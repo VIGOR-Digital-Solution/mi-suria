@@ -1,12 +1,23 @@
 "use client";
 import React from "react";
-import { PersonIcon, DesktopIcon } from "@radix-ui/react-icons";
+import {
+  PersonIcon,
+  DesktopIcon,
+  ExclamationTriangleIcon,
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
 export default function NavLinks() {
   const pathname = usePathname();
+  const sidebarPath = pathname.split("/")[2];
+
+  console.log(sidebarPath);
+
+  const getSidebarLink = (link: string) => {
+    return link.split("/")[2];
+  };
 
   const links = [
     {
@@ -19,6 +30,11 @@ export default function NavLinks() {
       text: "Monitor",
       Icon: DesktopIcon,
     },
+    {
+      href: "/super_admin/alert",
+      text: "Alert",
+      Icon: ExclamationTriangleIcon,
+    },
   ];
 
   return (
@@ -30,9 +46,9 @@ export default function NavLinks() {
             onClick={() => document.getElementById("sidebar-close")?.click()}
             href={link.href}
             key={index}
-            className={cn("flex items-center gap-2 rounded-sm p-2", {
+            className={cn("flex text-sm items-center gap-2 rounded-sm p-2", {
               " bg-green-500 dark:bg-green-700 text-white ":
-                pathname === link.href,
+                sidebarPath === getSidebarLink(link.href),
             })}
           >
             <Icon />
