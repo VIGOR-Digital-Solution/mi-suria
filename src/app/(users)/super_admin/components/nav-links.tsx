@@ -4,6 +4,7 @@ import {
   PersonIcon,
   DesktopIcon,
   ExclamationTriangleIcon,
+  LightningBoltIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -27,8 +28,13 @@ export default function NavLinks() {
     },
     {
       href: "/super_admin/monitor",
-      text: "Monitor",
+      text: "Plant",
       Icon: DesktopIcon,
+    },
+    {
+      href: "/super_admin/device",
+      text: "Device",
+      Icon: LightningBoltIcon,
     },
     {
       href: "/super_admin/alert",
