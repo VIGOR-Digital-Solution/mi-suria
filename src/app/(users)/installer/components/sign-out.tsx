@@ -15,7 +15,7 @@ export default function SignOut() {
 
   return (
     <form action={onSubmit}>
-      <Button className="w-fit flex items-center gap-2" variant="outline">
+      <Button className="w-full flex items-center gap-2" variant="outline">
         Logout{" "}
         <AiOutlineLoading3Quarters
           className={cn(" animate-spin", { hidden: !isPending })}
