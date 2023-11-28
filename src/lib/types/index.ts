@@ -24,6 +24,17 @@ export type IPlant = {
   peakHoursToday: number;
 };
 
+export type IDevice = {
+  id: string;
+  name: string;
+  status: "active" | "inactive";
+  connectedPlant: string;
+  dcDiscrete: number;
+  production: number;
+  dailyProduction: number;
+  peakHoursToday: number;
+};
+
 export type IAlert = {
   id: string;
   name: string;

@@ -1,4 +1,4 @@
-import { IAlert, IPlant } from "../types";
+import { IAlert, IDevice, IPlant } from "../types";
 
 export const plants: IPlant[] = [
   {
@@ -22,6 +22,29 @@ export const plants: IPlant[] = [
     trend: "UP",
     dailyProduction: 40.0,
     peakHoursToday: 1.5,
+  },
+];
+
+export const devices: IDevice[] = [
+  {
+    id: "10123400591",
+    name: "Inverter",
+    status: "inactive",
+    connectedPlant: "MI-Energy",
+    dcDiscrete: 0,
+    production: 0,
+    dailyProduction: 0,
+    peakHoursToday: 0,
+  },
+  {
+    id: "10119883324",
+    name: "Inverter",
+    status: "inactive",
+    connectedPlant: "MI-Energy",
+    dcDiscrete: 0,
+    production: 0,
+    dailyProduction: 0,
+    peakHoursToday: 0,
   },
 ];
 
