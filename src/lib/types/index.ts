@@ -11,3 +11,26 @@ export type IPermission = {
     name: string;
   };
 };
+
+export type IPlant = {
+  id: string;
+  name: string;
+  isAlert: boolean;
+  capacity: number;
+  production: number;
+  power: number;
+  trend: string;
+  dailyProduction: number;
+  peakHoursToday: number;
+};
+
+export type IAlert = {
+  id: string;
+  name: string;
+  status: "Open" | "Closed";
+  importance: "Warning" | "Failure";
+  plant: string;
+  device: string;
+  openedTime: string;
+  closedTime: string;
+};
