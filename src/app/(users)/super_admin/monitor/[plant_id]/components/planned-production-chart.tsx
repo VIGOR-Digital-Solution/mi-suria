@@ -5,22 +5,27 @@ import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
 
-export default function HistoryChart() {
+export default function PlannedProductionChart() {
   const arrayLength = 7; // Change this value to the desired length of the array
   const minValue = 0; // Minimum value for the random numbers
-  const maxValue = 1.5; // Maximum value for the random numbers
+  const maxValue = 45; // Maximum value for the random numbers
 
   const randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
   const randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
+  const randomNumbers3 = generateRandomArray(arrayLength, minValue, maxValue);
 
   const series: ApexAxisChartSeries = [
     {
-      name: "Production",
+      name: "Monthly Production",
       data: randomNumbers,
     },
     {
-      name: "Weather",
+      name: "Monthly Planned Production",
       data: randomNumbers2,
+    },
+    {
+      name: "Monthly Completion",
+      data: randomNumbers3,
     },
   ];
   const options: ApexOptions = {
@@ -33,31 +38,29 @@ export default function HistoryChart() {
         show: false,
       },
     },
-    stroke: {
-      curve: "smooth",
-    },
-    grid: {
-      show: false,
+    dataLabels: {
+      enabled: false,
     },
     yaxis: {
       min: 0,
-      max: 1.5,
-      decimalsInFloat: 1,
+      max: 45,
+      decimalsInFloat: 0,
       title: {
-        text: "kW",
+        text: "kWh",
       },
       forceNiceScale: true,
     },
+    colors: [colors.blue[400], colors.yellow[300], colors.green[300]],
     xaxis: {
       type: "datetime",
       categories: [
-        new Date("2023-11-27T00:00:00Z").getTime(),
-        new Date("2023-11-27T01:00:00Z").getTime(),
-        new Date("2023-11-27T02:00:00Z").getTime(),
-        new Date("2023-11-27T03:00:00Z").getTime(),
-        new Date("2023-11-27T04:00:00Z").getTime(),
-        new Date("2023-11-27T05:00:00Z").getTime(),
-        new Date("2023-11-27T06:00:00Z").getTime(),
+        new Date("2023-01-01T00:00:00Z").getTime(),
+        new Date("2023-02-01T00:00:00Z").getTime(),
+        new Date("2023-03-01T00:00:00Z").getTime(),
+        new Date("2023-04-01T00:00:00Z").getTime(),
+        new Date("2023-05-01T00:00:00Z").getTime(),
+        new Date("2023-06-01T00:00:00Z").getTime(),
+        new Date("2023-07-01T00:00:00Z").getTime(),
       ],
     },
   };
@@ -66,7 +69,7 @@ export default function HistoryChart() {
     <Chart
       options={options}
       series={series}
-      type="line"
+      type="bar"
       width={"100%"}
       height={"100%"}
     />

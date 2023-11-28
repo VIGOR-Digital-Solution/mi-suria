@@ -14,6 +14,12 @@ import PlantProduction from "./plant-production";
 import PlantLocation from "./plant-location";
 import PlantWeather from "./plant-weather";
 import PlantHistory from "./plant-history";
+import PlantSubsystem from "./plant-sub-system";
+import PlantInverterRankings from "./plant-inverter-rankings";
+import PlantPlannedProduction from "./plant-planned-production";
+import PlantWorkOrder from "./plant-work-order";
+import PlantBenefits from "./plant-benefits";
+import PlantSystemSummary from "./plant-system-summary";
 
 export default function PlantContent() {
   return (
@@ -32,6 +38,30 @@ export default function PlantContent() {
 
       <div className="col-span-4">
         <PlantHistory />
+      </div>
+
+      <div className="col-span-4">
+        <PlantSubsystem />
+      </div>
+
+      <div className="col-span-2">
+        <PlantInverterRankings />
+      </div>
+
+      <div className="col-span-2">
+        <PlantPlannedProduction />
+      </div>
+
+      <div className="col-span-2">
+        <PlantWorkOrder />
+      </div>
+
+      <div className="col-span-2">
+        <PlantBenefits />
+      </div>
+
+      <div className="col-span-4">
+        <PlantSystemSummary />
       </div>
     </div>
   );
