@@ -6,7 +6,7 @@ import { columns } from "./components/columns";
 export default function DevicePage() {
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-5">Alerts</h1>
+      <h1 className="text-3xl font-bold mb-5">Devices</h1>
 
       <DataTable columns={columns} data={devices} />
     </div>
