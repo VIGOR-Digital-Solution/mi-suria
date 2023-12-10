@@ -19,6 +19,11 @@ import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
 import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
+import { MdFactory } from "react-icons/md";
+import { HiServer , HiMiniDocumentChartBar } from "react-icons/hi2";
+
+import { FaGem, FaBuilding } from "react-icons/fa";
+import { TbChartPieFilled } from "react-icons/tb";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -45,19 +50,26 @@ export const SidebarWrapper = () => {
               isActive={pathname === "/super_admin/dashboard"}
               href="/super_admin/dashboard"
             />
-            <SidebarMenu title="Main Menu">
+            <SidebarMenu title="Management">
               <SidebarItem
-                isActive={pathname === "/accounts"}
+                isActive={pathname === "/super_admin/account_management"}
                 title="Accounts"
                 icon={<AccountsIcon />}
-                href="accounts"
+                href="account_management"
               />
               <SidebarItem
-                isActive={pathname === "/payments"}
-                title="Payments"
-                icon={<PaymentsIcon />}
+                isActive={pathname === "/super_admin/monitor"}
+                title="Plants"
+                icon={<FaBuilding className="w-6 h-6" color="#969696" />}
+                href="/super_admin/monitor"
               />
-              <CollapseItems
+              <SidebarItem
+                isActive={pathname === "/super_admin/device"}
+                title="Devices"
+                icon={<HiServer className="w-6 h-6" color="#969696" />}
+                href="/super_admin/device"
+              />
+              {/* <CollapseItems
                 icon={<BalanceIcon />}
                 items={["Banks Accounts", "Credit Cards", "Loans"]}
                 title="Balances"
@@ -76,10 +88,34 @@ export const SidebarWrapper = () => {
                 isActive={pathname === "/reports"}
                 title="Reports"
                 icon={<ReportsIcon />}
-              />
+              /> */}
             </SidebarMenu>
 
-            <SidebarMenu title="General">
+            <SidebarMenu title="Monitoring">
+              <SidebarItem
+                isActive={pathname === "/super_admin/analytics"}
+                title="Analytics"
+                icon={<TbChartPieFilled className="w-6 h-6" color="#969696" />}
+              />
+              <SidebarItem
+                isActive={pathname === "/super_admin/reporting"}
+                title="Reporting"
+                icon={<HiMiniDocumentChartBar className="w-6 h-6" color="#969696" />}
+              />
+             
+            </SidebarMenu>
+
+            <SidebarMenu title="Advanced">
+              <SidebarItem
+                isActive={pathname === "/upcoming"}
+                title="Upcoming"
+                icon={<FaGem color="#969696"/>}
+                // href="/upcoming"
+              />
+            </SidebarMenu>
+          </div>
+
+            {/* <SidebarMenu title="General">
               <SidebarItem
                 isActive={pathname === "/developers"}
                 title="Developers"
@@ -104,7 +140,7 @@ export const SidebarWrapper = () => {
                 icon={<ChangeLogIcon />}
               />
             </SidebarMenu>
-          </div>
+          </div> */}
           <div className={Sidebar.Footer()}>
             <Tooltip content={"Settings"} color="primary">
               <div className="max-w-fit">
