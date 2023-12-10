@@ -21,9 +21,8 @@ import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
 import { MdFactory } from "react-icons/md";
 import { HiServer , HiMiniDocumentChartBar } from "react-icons/hi2";
-
+import { IoPieChartSharp } from "react-icons/io5";
 import { FaGem, FaBuilding } from "react-icons/fa";
-import { TbChartPieFilled } from "react-icons/tb";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -58,10 +57,10 @@ export const SidebarWrapper = () => {
                 href="account_management"
               />
               <SidebarItem
-                isActive={pathname === "/super_admin/monitor"}
+                isActive={pathname === "/super_admin/plants"}
                 title="Plants"
                 icon={<FaBuilding className="w-6 h-6" color="#969696" />}
-                href="/super_admin/monitor"
+                href="/super_admin/plants"
               />
               <SidebarItem
                 isActive={pathname === "/super_admin/device"}
@@ -93,9 +92,10 @@ export const SidebarWrapper = () => {
 
             <SidebarMenu title="Monitoring">
               <SidebarItem
-                isActive={pathname === "/super_admin/analytics"}
+                isActive={pathname === "/super_admin/analysis"}
                 title="Analytics"
-                icon={<TbChartPieFilled className="w-6 h-6" color="#969696" />}
+                icon={<IoPieChartSharp className="w-6 h-6" color="#969696" />}
+                href="/super_admin/analysis"
               />
               <SidebarItem
                 isActive={pathname === "/super_admin/reporting"}
