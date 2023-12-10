@@ -19,7 +19,8 @@ import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
 import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
-import { LineChart } from "lucide-react";
+import { Antenna, LineChart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -53,6 +54,18 @@ export const SidebarWrapper = () => {
               href="/super_admin/analysis"
             />
             <SidebarMenu title="Main Menu">
+              <SidebarItem
+                isActive={pathname === "/super_admin/plants"}
+                title="My Plants"
+                icon={
+                  <Antenna
+                    className={cn("text-foreground-400", {
+                      "text-primary-500": pathname === "/super_admin/plants",
+                    })}
+                  />
+                }
+                href="/super_admin/plants"
+              />
               <SidebarItem
                 isActive={pathname === "/accounts"}
                 title="Accounts"
