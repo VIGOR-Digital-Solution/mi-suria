@@ -19,6 +19,7 @@ import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
 import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
+import { LineChart } from "lucide-react";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -44,6 +45,12 @@ export const SidebarWrapper = () => {
               icon={<HomeIcon />}
               isActive={pathname === "/super_admin/dashboard"}
               href="/super_admin/dashboard"
+            />
+            <SidebarItem
+              title="Analysis"
+              icon={<LineChart className="text-foreground-400" />}
+              isActive={pathname === "/super_admin/analysis"}
+              href="/super_admin/analysis"
             />
             <SidebarMenu title="Main Menu">
               <SidebarItem
