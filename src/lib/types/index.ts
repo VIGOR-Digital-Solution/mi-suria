@@ -45,3 +45,20 @@ export type IAlert = {
   openedTime: string;
   closedTime: string;
 };
+
+export type IWorkOrders = {
+  id: string;
+  plant: string;
+  alarm: string;
+  opened: {
+    on: string;
+    by: string;
+  };
+  assigned: {
+    on: string;
+    to: string;
+  };
+  closed: {
+    on: string;
+  };
+};

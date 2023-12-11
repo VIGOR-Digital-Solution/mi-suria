@@ -19,7 +19,7 @@ import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
 import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
-import { Antenna, BellRing, LineChart } from "lucide-react";
+import { Antenna, BellRing, Layers3, LineChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const SidebarWrapper = () => {
@@ -65,6 +65,19 @@ export const SidebarWrapper = () => {
                   />
                 }
                 href="/super_admin/plants"
+              />
+              <SidebarItem
+                isActive={pathname === "/super_admin/work_orders"}
+                title="Work Orders"
+                icon={
+                  <Layers3
+                    className={cn("text-foreground-400", {
+                      "text-primary-500":
+                        pathname === "/super_admin/work_orders",
+                    })}
+                  />
+                }
+                href="/super_admin/work_orders"
               />
               <SidebarItem
                 isActive={pathname === "/super_admin/alarms"}

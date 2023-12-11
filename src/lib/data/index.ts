@@ -1,4 +1,4 @@
-import { IAlert, IDevice, IPlant } from "../types";
+import { IAlert, IDevice, IPlant, IWorkOrders } from "../types";
 
 export const plants: IPlant[] = [
   {
@@ -68,5 +68,40 @@ export const alerts: IAlert[] = [
     device: "Inverter",
     openedTime: new Date().toLocaleTimeString(),
     closedTime: new Date().toLocaleTimeString(),
+  },
+];
+
+export const workOrders: IWorkOrders[] = [
+  {
+    id: "WO#1",
+    plant: "Plant 1",
+    alarm: "Excessively High Ambient Temperature",
+    opened: {
+      on: new Date().toLocaleString(),
+      by: "John Doe",
+    },
+    assigned: {
+      on: new Date().toLocaleString(),
+      to: "Evan Smith",
+    },
+    closed: {
+      on: new Date().toLocaleString(),
+    },
+  },
+  {
+    id: "WO#2",
+    plant: "Plant 2",
+    alarm: "PV Voltage High",
+    opened: {
+      on: new Date().toLocaleString(),
+      by: "John Doe",
+    },
+    assigned: {
+      on: new Date().toLocaleString(),
+      to: "Evan Smith",
+    },
+    closed: {
+      on: new Date().toLocaleString(),
+    },
   },
 ];
