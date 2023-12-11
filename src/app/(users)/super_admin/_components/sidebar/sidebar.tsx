@@ -59,16 +59,16 @@ export const SidebarWrapper = () => {
                 href="account_management"
               />
               <SidebarItem
-                isActive={pathname === "/super_admin/device"}
-                title="Devices"
-                icon={<HiServer className="w-6 h-6" color="#969696" />}
-                href="/super_admin/device"
-              />
-              <SidebarItem
                 isActive={pathname === "/super_admin/plants"}
                 title="Plants"
                 icon={<FaBuilding className="w-6 h-6" color="#969696" />}
                 href="/super_admin/plants"
+              />
+              <SidebarItem
+                isActive={pathname === "/super_admin/device"}
+                title="Devices"
+                icon={<HiServer className="w-6 h-6" color="#969696" />}
+                href="/super_admin/device"
               />
               <SidebarItem
                 isActive={pathname === "/super_admin/work_orders"}
