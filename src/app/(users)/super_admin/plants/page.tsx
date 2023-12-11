@@ -4,9 +4,8 @@ import TableContainer from "./_components/table-container";
 
 export default function AnalysisPage() {
   return (
-    <div className="p-5 space-y-5">
+    <div className="px-6 space-y-5">
       <CardInfoContainer />
-
       <TableContainer />
     </div>
   );

@@ -25,9 +25,8 @@ export default async function MonitorPage() {
   const tasks = await getTasks();
 
   return (
-    <div>
+    <div className="p-6">
       <h1 className="text-3xl font-bold mb-5">Plants</h1>
-
       <DataTable data={plants} columns={columns} />
     </div>
   );

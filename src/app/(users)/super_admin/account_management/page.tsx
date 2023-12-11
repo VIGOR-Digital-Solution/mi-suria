@@ -4,7 +4,7 @@ import CreateUserUi from "./components/create/create-user-ui";
 
 export default async function UserManagementPage() {
   return (
-    <div className="space-y-5 w-full overflow-y-auto px-3">
+    <div className="p-6 space-y-5 w-full overflow-y-auto">
       <h1 className="text-3xl font-bold">Accounts</h1>
       <div className="flex gap-2">
         {/* <SearchMembers /> */}
