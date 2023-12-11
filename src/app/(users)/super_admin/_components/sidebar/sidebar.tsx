@@ -47,13 +47,13 @@ export const SidebarWrapper = () => {
               isActive={pathname === "/super_admin/dashboard"}
               href="/super_admin/dashboard"
             />
-            <SidebarItem
-              title="Analysis"
-              icon={<LineChart className="text-foreground-400" />}
-              isActive={pathname === "/super_admin/analysis"}
-              href="/super_admin/analysis"
-            />
             <SidebarMenu title="Main Menu">
+              <SidebarItem
+                title="Analysis"
+                icon={<LineChart className="text-foreground-400" />}
+                isActive={pathname === "/super_admin/analysis"}
+                href="/super_admin/analysis"
+              />
               <SidebarItem
                 isActive={pathname === "/super_admin/plants"}
                 title="My Plants"
