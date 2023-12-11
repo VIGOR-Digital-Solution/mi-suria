@@ -34,8 +34,8 @@ export default function CardInfoContainer() {
               unitDiffValue="%"
               status="up"
               logo={<DatabaseZap size={40} className="text-foreground-400" />}
-              className="bg-primary-800"
-              textBackgroundEnabled
+              // className="bg-primary-800"
+              // textBackgroundEnabled
             />
             <CardInfo
               title="Total Yield"

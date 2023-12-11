@@ -1,7 +1,7 @@
 export default function Header() {
   return (
-    <div className="h-14 items-center flex p-5">
-      <p>Analysis</p>
+    <div className="p-6 items-center flex">
+      <p className="text-3xl font-bold">Analysis</p>
     </div>
   );
 }
