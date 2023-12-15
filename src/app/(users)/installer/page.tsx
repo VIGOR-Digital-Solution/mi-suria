@@ -4,5 +4,5 @@ import React from "react";
 import SignOut from "./components/sign-out";
 
 export default async function InstallerPage() {
-  return redirect("/installer/profile");
+  return redirect("/installer/dashboard");
 }
