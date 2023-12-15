@@ -100,7 +100,7 @@ export async function editAccount(
     .update({ name: data.name })
     .eq("id", id);
 
-  revalidatePath("/super_admin/account_management");
+  revalidatePath("/admin/accounts"); // modify based on the path used
   return JSON.stringify(userResult);
 }
 
