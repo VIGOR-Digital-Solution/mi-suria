@@ -4,5 +4,5 @@ import React from "react";
 import SignOut from "./components/sign-out";
 
 export default async function AdminPage() {
-  return redirect("/admin/profile");
+  return redirect("/admin/dashboard");
 }

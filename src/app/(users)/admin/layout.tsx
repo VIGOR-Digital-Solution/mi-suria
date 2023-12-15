@@ -6,6 +6,7 @@ import {
   createSupabaseServerClient,
   createSupabaseServerClientReadOnly,
 } from "@/lib/supabase";
+import { Layout } from "./_components/layout/layout";
 
 export default async function AdminLayout({
   children,
@@ -22,17 +23,5 @@ export default async function AdminLayout({
     return redirect("/unauthorized");
   }
 
-  return (
-    <div className="w-full flex ">
-      <div className="h-screen flex flex-col">
-        <SideNav />
-        {/* <MobileSideNav /> */}
-      </div>
-
-      <div className="w-full sm:flex-1 p-5 sm:p-10 space-y-5 bg-gray-100 dark:bg-inherit">
-        {/* <ToggleSidebar /> */}
-        {children}
-      </div>
-    </div>
-  );
+  return <Layout>{children}</Layout>;
 }
