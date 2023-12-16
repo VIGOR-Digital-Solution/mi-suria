@@ -4,5 +4,5 @@ import React from "react";
 import SignOut from "./components/sign-out";
 
 export default async function UserPage() {
-  return redirect("/user/profile");
+  return redirect("/user/dashboard");
 }
