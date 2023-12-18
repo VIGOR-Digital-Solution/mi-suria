@@ -77,8 +77,11 @@ const CardItem = ({
             <p className="text-black">{data.icon}</p>
           </div>
           <div className="flex justify-around bg-foreground-500">
-            {data.components.map((component: any) => (
-              <div className="flex items-center space-x-2 text-white">
+            {data.components.map((component: any, index: any) => (
+              <div
+                key={index}
+                className="flex items-center space-x-2 text-white"
+              >
                 <p>{component.icon}</p>
                 <div className="flex flex-col items-center">
                   <p>{component.value}</p>
