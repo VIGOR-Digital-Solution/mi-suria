@@ -23,7 +23,7 @@ import {
 
 export default function CardInfoContainer() {
   return (
-    <div className="grid grid-cols-3 space-x-5">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-5 lg:gap-x-5">
       <CardInfo
         title="Today's Alarms"
         subtitle="Problems triggered"
