@@ -5,7 +5,7 @@ import SummaryWOChart from "./summary-wo-chart";
 
 export default function WorkOrderContainer() {
   return (
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
       <div className="col-span-1">
         <WorkOrderCard
           title="Current Work Orders"
@@ -14,7 +14,7 @@ export default function WorkOrderContainer() {
           <CurrentWOChart openValue={12} closedValue={5} inprogressValue={3} />
         </WorkOrderCard>
       </div>
-      <div className="col-span-2">
+      <div className="col-span-1 lg:col-span-2">
         <WorkOrderCard
           title="Month-End Summary"
           subtitle="Subtitle month-end summary"

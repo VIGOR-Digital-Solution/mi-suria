@@ -55,6 +55,7 @@ export default function CurrentWOChart({
     labels: ["Open", "In progress", "Closed"],
     legend: {
       show: true,
+      position: "bottom",
     },
     colors: [colors.green[400], colors.blue[400], colors.gray[400]],
     // dataLabels: {

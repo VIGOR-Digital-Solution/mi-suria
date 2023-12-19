@@ -12,7 +12,7 @@ export default function WorkOrderCard({
   children: React.ReactNode;
 }) {
   return (
-    <Card shadow="sm" className="p-5">
+    <Card shadow="sm" className="h-full w-full">
       <CardHeader>
         <div className="w-full">
           <p className="font-semibold">{title}</p>
@@ -21,7 +21,7 @@ export default function WorkOrderCard({
       </CardHeader>
 
       <CardBody>
-        <div className="h-52">{children}</div>
+        <div className="h-52 w-full">{children}</div>
       </CardBody>
 
       {/* <CardFooter></CardFooter> */}
