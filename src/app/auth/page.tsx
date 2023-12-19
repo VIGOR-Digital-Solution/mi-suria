@@ -24,7 +24,7 @@ export default async function AuthPage() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-96">
+      <div className="w-full px-5 max-w-[450px]">
         <AuthForm />
       </div>
     </div>
