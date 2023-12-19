@@ -75,7 +75,7 @@ export default function ChartRevenue() {
   };
 
   return (
-    <div className="p-5 h-full">
+    <div className="sm:p-5 h-full">
       <Chart
         options={options}
         series={series}

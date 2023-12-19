@@ -68,7 +68,7 @@ export default function CardRevenue() {
     <Card shadow="sm" className="p-5">
       <Tabs defaultValue="daily">
         <CardHeader>
-          <div className="flex items-center justify-between w-full">
+          <div className="space-y-5 sm:space-y-0 sm:flex items-center justify-between w-full">
             <div>
               <p className="font-semibold">Real Time Revenue Statistic</p>
               <p className="text-sm font-medium text-foreground-400">

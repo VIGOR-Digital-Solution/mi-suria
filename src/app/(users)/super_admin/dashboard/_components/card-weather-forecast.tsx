@@ -63,9 +63,9 @@ const CardItem = ({
 }) => {
   return (
     <div className="">
-      <div className="grid grid-cols-2">
+      <div className="grid sm:grid-cols-2">
         <div className="col-span-1 flex items-center justify-center bg-gray-800">
-          <div className="flex flex-col items-center space-y-5 text-white">
+          <div className="flex flex-col px-5 items-center space-y-5 text-white">
             <p className="text-7xl">
               {data.degree}&#176;{data.unitDegree}
             </p>
@@ -109,7 +109,7 @@ export default function CardWeatherForecast() {
       </CardHeader>
 
       <CardBody>
-        <div className="p-5">
+        <div className="overflow-hidden">
           <Carousel>
             {weathers.map((weather, index) => (
               <CardItem key={index} data={weather} />

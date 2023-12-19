@@ -42,8 +42,8 @@ const CardItem = ({
   enableDivider?: boolean;
 }) => {
   return (
-    <div className="grid grid-cols-5 gap-2 pt-2 items-center w-full">
-      <div className="col-span-4 flex items-center space-x-4">
+    <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 pt-2 items-center w-full">
+      <div className="sm:col-span-4 flex items-center space-x-4">
         {data.icon}
         <div>
           <p className="text-sm font-semibold">{data.title}</p>
@@ -52,13 +52,13 @@ const CardItem = ({
           </p>
         </div>
       </div>
-      <div className="col-span-1 flex justify-end">
+      <div className="sm:col-span-1 flex justify-end">
         <p className="font-semibold">
           {data.value} {data.unitValue}
         </p>
       </div>
 
-      <div className="col-span-5">{enableDivider ? <Divider /> : null}</div>
+      <div className="sm:col-span-5">{enableDivider ? <Divider /> : null}</div>
     </div>
   );
 };

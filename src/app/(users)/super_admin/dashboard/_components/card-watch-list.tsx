@@ -64,14 +64,14 @@ const CardItem = ({
   enableDivider: boolean;
 }) => {
   return (
-    <div className="grid grid-cols-5 gap-2 pt-2 items-center">
-      <div className="col-span-3">
+    <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 pt-2 items-center">
+      <div className="sm:col-span-3">
         <p className="font-semibold text-sm">{data.name}</p>
         <p className="text-sm font-medium text-foreground-400">
           {data.location}
         </p>
       </div>
-      <div className="col-span-1">
+      <div className="sm:col-span-1">
         <Chip
           className={cn({
             "bg-success-50": data.status === "Running",
@@ -89,13 +89,13 @@ const CardItem = ({
           </p>
         </Chip>
       </div>
-      <div className="col-span-1 flex justify-end">
+      <div className="sm:col-span-1 flex justify-end">
         <p className="font-semibold">
           {data.value} {data.unitValue}
         </p>
       </div>
 
-      <div className="col-span-5">{enableDivider ? <Divider /> : null}</div>
+      <div className="sm:col-span-5">{enableDivider ? <Divider /> : null}</div>
     </div>
   );
 };

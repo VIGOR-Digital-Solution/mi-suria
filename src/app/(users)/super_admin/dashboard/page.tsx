@@ -10,7 +10,7 @@ export default function DashboardPage() {
   return (
     <div className="px-6 grid grid-cols-1 xl:grid-cols-4 gap-5">
       {/* row 1 */}
-      <div className="col-span-2 grid grid-cols-2 gap-5 h-[500px]">
+      <div className="col-span-2 grid grid-cols-1 xl:grid-cols-2 gap-5 xl:h-[500px]">
         <CardInfo
           title="Current Power"
           content="1.655 kWh"
