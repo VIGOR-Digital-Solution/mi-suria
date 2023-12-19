@@ -9,7 +9,9 @@ export default function TableContainer() {
     <div>
       <Tabs defaultValue="commercial" className="space-y-5">
         <TabsList className="grid grid-cols-2 w-fit">
-          <TabsTrigger value="commercial">Commercial & Residential</TabsTrigger>
+          <TabsTrigger value="commercial" className="truncate justify-start">
+            Commercial & Residential
+          </TabsTrigger>
           <TabsTrigger value="utility">Utility</TabsTrigger>
         </TabsList>
         <TabsContent value="commercial">

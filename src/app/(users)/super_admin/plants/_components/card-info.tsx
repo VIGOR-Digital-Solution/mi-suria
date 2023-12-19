@@ -39,7 +39,7 @@ export default function CardInfo({
   inactiveValue: string;
 } & CardProps) {
   return (
-    <Card shadow="sm" className={cn("p-5", className)} {...props}>
+    <Card shadow="sm" className={cn("", className)} {...props}>
       <CardHeader>
         <div className="w-full flex">
           <span className="font-semibold">{title}</span>
@@ -47,7 +47,7 @@ export default function CardInfo({
       </CardHeader>
 
       <CardBody>
-        <div className="grid grid-cols-2">
+        <div className="grid xl:grid-cols-2">
           <div className="h-64">
             <CardInfoChart
               activeValue={Number(activeValue)}

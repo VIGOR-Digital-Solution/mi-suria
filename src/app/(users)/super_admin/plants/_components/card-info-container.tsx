@@ -4,7 +4,7 @@ import CardInfo from "./card-info";
 
 export default function CardInfoContainer() {
   return (
-    <div className="grid grid-cols-2 gap-5">
+    <div className="grid lg:grid-cols-2 gap-5">
       <CardInfo
         title="Active Plant"
         activeValue="85"
