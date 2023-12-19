@@ -4,7 +4,7 @@ import TotalPowerChart from "./total-power-chart";
 
 export default function TotalPowerCard() {
   return (
-    <Card shadow="none" className="p-5">
+    <Card shadow="none" className="">
       <CardHeader>
         <div className="w-full">
           <p className="font-semibold">Real Time Revenue Statistic</p>
@@ -15,7 +15,7 @@ export default function TotalPowerCard() {
       </CardHeader>
 
       <CardBody>
-        <div className="h-[400px]">
+        <div className="h-[400px] overflow-hidden">
           <TotalPowerChart />
         </div>
       </CardBody>

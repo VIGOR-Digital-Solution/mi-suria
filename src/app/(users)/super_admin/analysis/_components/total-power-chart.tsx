@@ -90,7 +90,7 @@ export default function TotalPowerChart() {
   };
 
   return (
-    <div className="p-5 h-full">
+    <div className="h-full">
       <Chart
         options={options}
         series={series}

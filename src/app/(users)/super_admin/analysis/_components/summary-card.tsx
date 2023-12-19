@@ -20,16 +20,25 @@ export default function SummaryCard() {
         <div className="w-full">
           <Tabs defaultValue="power" className="space-y-5">
             <TabsList className="grid grid-cols-3 w-fit">
-              <TabsTrigger value="power">Total Power</TabsTrigger>
-              <TabsTrigger value="yield">Total Yield</TabsTrigger>
-              <TabsTrigger value="revenue">Total Revenue</TabsTrigger>
+              <TabsTrigger className="truncate justify-start" value="power">
+                Total Power
+              </TabsTrigger>
+              <TabsTrigger className="truncate justify-start" value="yield">
+                Total Yield
+              </TabsTrigger>
+              <TabsTrigger className="truncate justify-start" value="revenue">
+                Total Revenue
+              </TabsTrigger>
             </TabsList>
-            <TabsContent value="power" className="grid grid-cols-3">
-              <div className="col-span-2">
+            <TabsContent
+              value="power"
+              className="grid grid-cols-1 xl:grid-cols-3"
+            >
+              <div className="col-span-1 xl:col-span-2">
                 <TotalPowerCard />
               </div>
 
-              <div className="col-span-1">
+              <div className="col-span-1 xl:col-span-1">
                 <PlantListCard />
               </div>
             </TabsContent>

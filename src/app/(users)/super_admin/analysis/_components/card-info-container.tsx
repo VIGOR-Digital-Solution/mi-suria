@@ -19,13 +19,21 @@ export default function CardInfoContainer() {
     <div>
       <Tabs defaultValue="today" className="space-y-5">
         <TabsList className="grid grid-cols-4 w-fit">
-          <TabsTrigger value="today">Today</TabsTrigger>
-          <TabsTrigger value="week">Weak to Date</TabsTrigger>
-          <TabsTrigger value="month">Month to Date</TabsTrigger>
-          <TabsTrigger value="year">Year to Date</TabsTrigger>
+          <TabsTrigger className="truncate justify-start" value="today">
+            Today
+          </TabsTrigger>
+          <TabsTrigger className="truncate justify-start" value="week">
+            Weak to Date
+          </TabsTrigger>
+          <TabsTrigger className="truncate justify-start" value="month">
+            Month to Date
+          </TabsTrigger>
+          <TabsTrigger className="truncate justify-start" value="year">
+            Year to Date
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="today">
-          <div className="grid grid-cols-3 space-x-5">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-5 xl:gap-x-5">
             <CardInfo
               title="Total Power"
               value="87.40"
