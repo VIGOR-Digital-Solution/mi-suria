@@ -8,16 +8,16 @@ export function AuthForm() {
   return (
     <div className="w-full space-y-5">
       <Tabs defaultValue="signin" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-1">
           <TabsTrigger value="signin">SignIn</TabsTrigger>
-          <TabsTrigger value="register">Register</TabsTrigger>
+          {/* <TabsTrigger value="register">Register</TabsTrigger> */}
         </TabsList>
         <TabsContent value="signin">
           <LoginForm />
         </TabsContent>
-        <TabsContent value="register">
+        {/* <TabsContent value="register">
           <RegisterForm />
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
     </div>
   );
