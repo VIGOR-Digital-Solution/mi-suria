@@ -19,12 +19,20 @@ import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
 import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
 import { usePathname } from "next/navigation";
-import { Antenna, BellRing, Layers3, LineChart } from "lucide-react";
+import {
+  Antenna,
+  BellRing,
+  Layers3,
+  LineChart,
+  RadioReceiver,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MdFactory } from "react-icons/md";
 import { HiServer, HiMiniDocumentChartBar } from "react-icons/hi2";
 import { IoPieChartSharp } from "react-icons/io5";
+import { TbDeviceCameraPhone } from "react-icons/tb";
 import { FaGem, FaBuilding } from "react-icons/fa";
+import { RiDeviceFill } from "react-icons/ri";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -59,10 +67,22 @@ export const SidebarWrapper = () => {
                 href="/installer/accounts"
               />
               <SidebarItem
-                isActive={pathname === "/installer/plants"}
+                isActive={
+                  pathname === "/installer/plants" ||
+                  pathname === "/installer/plants/create"
+                }
                 title="Plants"
                 icon={<FaBuilding className="w-6 h-6" color="#969696" />}
                 href="/installer/plants"
+              />
+              <SidebarItem
+                isActive={
+                  pathname === "/installer/devices" ||
+                  pathname === "/installer/devices/create"
+                }
+                title="Devices"
+                icon={<RiDeviceFill className="w-6 h-6" color="#969696" />}
+                href="/installer/devices"
               />
               {/* 
               <SidebarItem
