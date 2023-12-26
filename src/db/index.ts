@@ -1,6 +1,8 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schemaPlant from "./schema/plant";
+import * as schemaUser from "./schema/user";
+import * as schemaPermission from "./schema/permission";
 
 declare module global {
   let client: ReturnType<typeof postgres> | undefined;
@@ -22,5 +24,7 @@ if (process.env.NODE_ENV !== "production") {
 export const db = drizzle(client, {
   schema: {
     ...schemaPlant,
+    ...schemaUser,
+    ...schemaPermission,
   },
 });
