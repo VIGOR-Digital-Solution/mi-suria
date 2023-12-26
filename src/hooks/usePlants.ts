@@ -1,4 +1,5 @@
 import { NewPlant } from "@/db/schema/plant";
+import readUserSession from "@/lib/actions";
 import {
   UseMutationOptions,
   useMutation,
@@ -6,18 +7,29 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 
-const fetchPlants = () => {
-  return axios.get("/api/plants");
+const fetchPlants = async (relations: { isUser: boolean }) => {
+  const { data: userSession } = await readUserSession();
+  const authId = userSession.session?.user.id;
+
+  if (relations.isUser) {
+    return axios.get(`/api/users/${authId}/plants?is_user=true`);
+  }
+
+  return axios.get(`/api/users/${authId}/plants`);
 };
 
 const createPlant = (data: NewPlant) => {
   return axios.post("/api/plants", data);
 };
 
-export const usePlants = () => {
+export const usePlants = (
+  relations: {
+    isUser: boolean;
+  } = { isUser: false }
+) => {
   return useQuery({
     queryKey: ["plants"],
-    queryFn: fetchPlants,
+    queryFn: () => fetchPlants(relations),
   });
 };
 
