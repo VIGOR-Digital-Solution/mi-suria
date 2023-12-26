@@ -8,6 +8,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { user } from "./user";
+import { relations } from "drizzle-orm";
 
 export const permission = pgTable("permission", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -17,8 +18,19 @@ export const permission = pgTable("permission", {
     onUpdate: "cascade",
     onDelete: "cascade",
   }),
-  createdBy: uuid("created_by").notNull(),
+  createdBy: uuid("created_by"),
   createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
     .defaultNow()
     .notNull(),
 });
+
+export const permissionRelations = relations(permission, ({ one }) => ({
+  user: one(user, {
+    fields: [permission.userId],
+    references: [user.id],
+  }),
+  // createdBy: one(user, {
+  //   fields: [permission.createdBy],
+  //   references: [user.id],
+  // }),
+}));
