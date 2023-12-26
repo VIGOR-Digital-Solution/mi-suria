@@ -18,8 +18,11 @@ const fetchPlants = async (relations: { isUser: boolean }) => {
   return axios.get(`/api/users/${authId}/plants`);
 };
 
-const createPlant = (data: NewPlant) => {
-  return axios.post("/api/plants", data);
+const createPlant = async (data: NewPlant) => {
+  const { data: userSession } = await readUserSession();
+  const authId = userSession.session?.user.id;
+
+  return axios.post(`/api/users/${authId}/plants`, data);
 };
 
 export const usePlants = (
