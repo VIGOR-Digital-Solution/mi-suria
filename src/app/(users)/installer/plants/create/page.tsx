@@ -32,6 +32,7 @@ import { useTransition } from "react";
 import AddressField from "./_components/address-field";
 import { useCreatePlant } from "@/hooks";
 import { AxiosError } from "axios";
+import UserField from "./_components/user-field";
 
 const FormSchema = z
   .object({
@@ -41,6 +42,7 @@ const FormSchema = z
       lat: z.number(),
       lng: z.number(),
     }),
+    userId: z.string().min(1, "Required"),
   })
   .refine((data) => data.address, {
     message: "Please select a valid address",
@@ -56,6 +58,7 @@ export default function CreatePlantPage() {
     defaultValues: {
       name: "",
       address: "",
+      userId: "",
     },
   });
 
@@ -116,6 +119,24 @@ export default function CreatePlantPage() {
               <FormLabel>Address</FormLabel>
               <FormControl>
                 <AddressField field={field} form={form} />
+                {/* <Input
+                  placeholder="Plant A"
+                  type="text"
+                  {...field}
+                /> */}
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="userId"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>User</FormLabel>
+              <FormControl>
+                <UserField form={form} field={field} />
                 {/* <Input
                   placeholder="Plant A"
                   type="text"
