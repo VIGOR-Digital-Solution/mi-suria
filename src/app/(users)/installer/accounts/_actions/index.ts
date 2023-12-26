@@ -45,6 +45,7 @@ export async function createAccount(data: {
 
   const userResult = await supabase.from("user").insert({
     name: data.name,
+    email: data.email,
     id: createResult.data.user?.id,
   });
 
