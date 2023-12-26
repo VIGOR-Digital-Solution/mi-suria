@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "drizzle-push": "drizzle-kit push:pg"
+    "drizzle-push": "drizzle-kit push:pg",
+    "drizzle-pull": "drizzle-kit introspect:pg"
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
