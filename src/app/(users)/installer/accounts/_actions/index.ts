@@ -75,7 +75,10 @@ export async function readAccounts() {
   return await supabase
     .from("permission")
     .select("*, user(*)")
-    .or(`user_id.eq.${authUserId},created_by.eq.${authUserId}`); // modify based on the related access rule
+    .or(`user_id.eq.${authUserId},created_by.eq.${authUserId}`)
+    .order("created_at", {
+      ascending: true,
+    }); // modify based on the related access rule
 }
 
 export async function editAccount(
