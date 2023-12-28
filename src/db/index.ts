@@ -5,6 +5,7 @@ import * as schemaUser from "./schema/user";
 import * as schemaPermission from "./schema/permission";
 import * as schemaInvt from "./schema/invt";
 import * as schemaDevice from "./schema/device";
+import * as schemaWorkOrder from "./schema/work-order";
 
 declare module global {
   let client: ReturnType<typeof postgres> | undefined;
@@ -30,5 +31,6 @@ export const db = drizzle(client, {
     ...schemaPermission,
     ...schemaInvt,
     ...schemaDevice,
+    ...schemaWorkOrder,
   },
 });
