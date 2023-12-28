@@ -24,10 +24,11 @@ export default async function UserList() {
       {(permissions as IPermission[])?.map((permission, index) => {
         return (
           <div
-            className=" grid grid-cols-5  rounded-sm  p-3 align-middle font-normal"
+            className=" grid grid-cols-6  rounded-sm  p-3 align-middle font-normal"
             key={index}
           >
             <h1>{permission.user.name}</h1>
+            <h1>{permission.user.email}</h1>
 
             <div>
               <span

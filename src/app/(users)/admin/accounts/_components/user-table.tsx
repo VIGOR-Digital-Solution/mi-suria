@@ -5,7 +5,7 @@ import UserList from "./user-list";
 import Table from "@/components/ui/custom-table";
 
 export default function UserTable() {
-  const tableHeader = ["Name", "Role", "Joined", "Status"];
+  const tableHeader = ["Name", "Email", "Role", "Joined", "Status"];
 
   return (
     <Table headers={tableHeader}>
