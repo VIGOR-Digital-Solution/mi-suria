@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { permission } from "@/db/schema/permission";
 import { plant } from "@/db/schema/plant";
-import { eq } from "drizzle-orm";
+import { eq, or } from "drizzle-orm";
 
 export async function GET(
   request: Request,
@@ -18,7 +18,7 @@ export async function GET(
     }
 
     const permissions = await db.query.permission.findMany({
-      where: eq(permission.createdBy, uid),
+      where: or(eq(permission.createdBy, uid), eq(permission.userId, uid)),
       with: {
         user: {
           with: {
