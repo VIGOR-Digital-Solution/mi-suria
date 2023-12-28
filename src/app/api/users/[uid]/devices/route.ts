@@ -3,7 +3,7 @@ import { device } from "@/db/schema/device";
 import { invt } from "@/db/schema/invt";
 import { permission } from "@/db/schema/permission";
 import axios from "axios";
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, or } from "drizzle-orm";
 
 export async function GET(
   request: Request,
@@ -20,7 +20,7 @@ export async function GET(
     }
 
     const permissions = await db.query.permission.findMany({
-      where: eq(permission.createdBy, uid),
+      where: or(eq(permission.createdBy, uid), eq(permission.userId, uid)),
       with: {
         user: {
           with: {
@@ -35,6 +35,12 @@ export async function GET(
     const plants = permissions.map((permission) => permission.user?.plants);
     const flatPlants = plants.flat();
     const plantIds = flatPlants.map((plant) => plant?.id);
+
+    if (!plantIds.length) {
+      return Response.json(plantIds, {
+        status: 200,
+      });
+    }
 
     const devices = await db.query.device.findMany({
       where: inArray(device.plantId, plantIds as number[]),
