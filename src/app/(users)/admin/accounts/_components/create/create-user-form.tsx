@@ -47,7 +47,7 @@ const FormSchema = z
   });
 
 export default function CreateUserForm() {
-  const roles = ["installer", "user"];
+  const roles = ["installer"];
 
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof FormSchema>>({
