@@ -75,7 +75,7 @@ export async function readAccounts() {
   return await supabase
     .from("permission")
     .select("*, user(*)")
-    .eq("created_by", authUserId);
+    .order("created_at", { ascending: true });
 }
 
 export async function editAccount(
