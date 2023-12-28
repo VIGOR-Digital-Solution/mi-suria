@@ -1,3 +1,5 @@
+export type IRole = "super-admin" | "admin" | "installer" | "user";
+
 export type IPermission = {
   id: string;
   created_at: string;
@@ -9,6 +11,7 @@ export type IPermission = {
     id: string;
     created_at: string;
     name: string;
+    email: string;
   };
 };
 
