@@ -7,9 +7,9 @@ export default function TotalPowerCard() {
     <Card shadow="none" className="">
       <CardHeader>
         <div className="w-full">
-          <p className="font-semibold">Real Time Revenue Statistic</p>
+          <p className="font-semibold">Total Power Chart</p>
           <p className="text-sm font-medium text-foreground-400">
-            Subtitle for revenue statistic
+            Energy Import and Export
           </p>
         </div>
       </CardHeader>
