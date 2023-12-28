@@ -33,9 +33,9 @@ import { useTransition } from "react";
 const FormSchema = z
   .object({
     name: z.string().min(2, {
-      message: "Username must be at least 2 characters.",
+      message: "name must be at least 2 characters.",
     }),
-    role: z.enum(["admin", "installer", "user"]),
+    role: z.enum(["admin"]),
     status: z.enum(["active"]),
     email: z.string().email(),
     password: z.string().min(6, { message: "Password should be 6 characters" }),
@@ -47,7 +47,7 @@ const FormSchema = z
   });
 
 export default function CreateUserForm() {
-  const roles = ["admin", "installer", "user"];
+  const roles = ["admin"];
 
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -150,7 +150,7 @@ export default function CreateUserForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Display Name</FormLabel>
               <FormControl>
                 <Input placeholder="display name" onChange={field.onChange} />
               </FormControl>
