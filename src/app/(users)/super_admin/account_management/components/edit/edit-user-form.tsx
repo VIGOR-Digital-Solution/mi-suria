@@ -40,7 +40,7 @@ export default function EditUserForm({
 }: {
   permission: IPermission;
 }) {
-  const roles = ["admin", "installer", "user"];
+  const roles = ["admin"];
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof FormSchema>>({
