@@ -81,7 +81,7 @@ export const SidebarWrapper = () => {
                   pathname === "/installer/devices/create"
                 }
                 title="Devices"
-                icon={<RiDeviceFill className="w-6 h-6" color="#969696" />}
+                icon={<HiServer className="w-6 h-6" color="#969696" />}
                 href="/installer/devices"
               />
               {/* 
