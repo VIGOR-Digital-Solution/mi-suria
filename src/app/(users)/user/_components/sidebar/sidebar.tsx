@@ -25,6 +25,7 @@ import { MdFactory } from "react-icons/md";
 import { HiServer, HiMiniDocumentChartBar } from "react-icons/hi2";
 import { IoPieChartSharp } from "react-icons/io5";
 import { FaGem, FaBuilding } from "react-icons/fa";
+import { RiDeviceFill } from "react-icons/ri";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -57,6 +58,36 @@ export const SidebarWrapper = () => {
                 title="Accounts"
                 icon={<AccountsIcon />}
                 href="/user/accounts"
+              />
+              {/* <SidebarItem
+                isActive={pathname === "/user/work_orders"}
+                title="Work Orders"
+                icon={
+                  <Layers3
+                    className={cn("text-foreground-400", {
+                      "text-primary-500": pathname === "/user/work_orders",
+                    })}
+                  />
+                }
+                href="/user/work_orders"
+              /> */}
+              <SidebarItem
+                isActive={
+                  pathname === "/user/plants" ||
+                  pathname === "/user/plants/create"
+                }
+                title="Plants"
+                icon={<FaBuilding className="w-6 h-6" color="#969696" />}
+                href="/user/plants"
+              />
+              <SidebarItem
+                isActive={
+                  pathname === "/user/devices" ||
+                  pathname === "/user/devices/create"
+                }
+                title="Devices"
+                icon={<HiServer className="w-6 h-6" color="#969696" />}
+                href="/user/devices"
               />
               {/* <SidebarItem
                 isActive={pathname === "/super_admin/plants"}
