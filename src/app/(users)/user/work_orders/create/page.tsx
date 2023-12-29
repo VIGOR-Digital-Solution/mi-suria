@@ -81,13 +81,13 @@ export default function CreateWorkOrderPage() {
     startTransition(() => {
       console.log(data);
 
-      mutate(
-        { ...data, plantId: Number(data.plantId) },
-        {
-          onSuccess,
-          onError,
-        }
-      );
+      // mutate(
+      //   { ...data, plantId: Number(data.plantId) },
+      //   {
+      //     onSuccess,
+      //     onError,
+      //   }
+      // );
     });
   }
 
@@ -96,10 +96,10 @@ export default function CreateWorkOrderPage() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
         <FormField
           control={form.control}
-          name="name"
+          name="alarmType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Alarm Type</FormLabel>
               <FormControl>
                 <Input placeholder="Inverter A" type="text" {...field} />
               </FormControl>
@@ -109,7 +109,7 @@ export default function CreateWorkOrderPage() {
         />
         <FormField
           control={form.control}
-          name="serialNumber"
+          name="plantId"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Serial Number</FormLabel>
@@ -127,12 +127,12 @@ export default function CreateWorkOrderPage() {
         />
         <FormField
           control={form.control}
-          name="plantId"
+          name="issuedTo"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Plant</FormLabel>
               <FormControl>
-                <PlantField form={form} field={field} />
+                {/* <PlantField form={form} field={field} /> */}
                 {/* <Input
                   placeholder="Plant A"
                   type="text"
