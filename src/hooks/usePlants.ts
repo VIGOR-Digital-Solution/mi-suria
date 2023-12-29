@@ -12,12 +12,10 @@ const fetchPlants = async (relations: { isUser: boolean }) => {
   const authId = userSession.session?.user.id;
 
   if (relations.isUser) {
-    return axios.get(
-      `https://mi-suria.vercel.app/api/users/${authId}/plants?is_user=true`
-    );
+    return axios.get(`/api/users/${authId}/plants?is_user=true`);
   }
 
-  return axios.get(`https://mi-suria.vercel.app/api/users/${authId}/plants`);
+  return axios.get(`/api/users/${authId}/plants`);
 };
 
 const createPlant = async (data: NewPlant) => {
