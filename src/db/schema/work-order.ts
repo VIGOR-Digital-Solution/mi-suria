@@ -14,7 +14,7 @@ import { Plant, plant } from "./plant";
 
 export const workOrder = pgTable("work_order", {
   id: serial("id").primaryKey(),
-  alarmType: varchar("name", { length: 256 }).notNull(),
+  alarmType: varchar("alarm_type", { length: 256 }).notNull(),
   plantId: integer("plant_id").references(() => plant.id, {
     onUpdate: "cascade",
     onDelete: "cascade",
@@ -27,7 +27,7 @@ export const workOrder = pgTable("work_order", {
     onUpdate: "cascade",
     onDelete: "cascade",
   }),
-  closedOn: timestamp("closed_on", { withTimezone: true, mode: "string" }),
+  closedAt: timestamp("closed_at", { withTimezone: true, mode: "string" }),
   createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
     .defaultNow()
     .notNull(),
