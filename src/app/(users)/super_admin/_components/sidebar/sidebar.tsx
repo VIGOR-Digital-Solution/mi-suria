@@ -59,7 +59,10 @@ export const SidebarWrapper = () => {
                 href="/super_admin/accounts"
               />
               <SidebarItem
-                isActive={pathname === "/super_admin/plants"}
+                isActive={
+                  pathname === "/super_admin/plants" ||
+                  pathname.split("/")[2] === "plants"
+                }
                 title="Plants"
                 icon={<FaBuilding className="w-6 h-6" color="#969696" />}
                 href="/super_admin/plants"

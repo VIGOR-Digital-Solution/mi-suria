@@ -125,7 +125,7 @@ export const columns: ColumnDef<IPlant>[] = [
   {
     id: "actions",
     cell: ({ row }) => (
-      <Link href={`/super_admin/monitor/${row.original.id}`}>View</Link>
+      <Link href={`/super_admin/plants/${row.original.id}`}>View</Link>
     ),
   },
   // {
