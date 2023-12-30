@@ -119,10 +119,10 @@ export const SidebarWrapper = () => {
 
             <SidebarMenu title="Monitoring">
               <SidebarItem
-                isActive={pathname === "/super_admin/analysis"}
+                isActive={pathname === "/super_admin/analytics"}
                 title="Analytics"
                 icon={<IoPieChartSharp className="w-6 h-6" color="#969696" />}
-                href="/super_admin/analysis"
+                href="/super_admin/analytics"
               />
               <SidebarItem
                 isActive={pathname === "/super_admin/reporting"}

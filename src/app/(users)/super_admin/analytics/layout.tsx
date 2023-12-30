@@ -1,6 +1,6 @@
 import Header from "../_components/header";
 
-export default async function SuperAdminAnalysisLayout({
+export default async function SuperAdminAnalyticsLayout({
   children,
 }: {
   children: React.ReactNode;
