@@ -63,7 +63,7 @@ export async function createAccount(data: {
     created_by: authUserId,
   });
 
-  revalidatePath("/super_admin/account_management");
+  revalidatePath("/super_admin/accounts");
   return JSON.stringify(permissionResult);
 }
 
@@ -101,13 +101,13 @@ export async function editAccount(
     .update({ name: data.name })
     .eq("id", id);
 
-  revalidatePath("/super_admin/account_management");
+  revalidatePath("/super_admin/accounts");
   return JSON.stringify(userResult);
 }
 
 export async function deleteAccount(id: string) {
   const supabase = await createSupabaseAdmin();
   const deleteResult = await supabase.auth.admin.deleteUser(id);
-  revalidatePath("/super_admin/account_management");
+  revalidatePath("/super_admin/accounts");
   return JSON.stringify(deleteResult);
 }
