@@ -1,4 +1,4 @@
-import Header from "./_components/header";
+import Header from "../_components/header";
 
 export default async function SuperAdminDashboardLayout({
   children,
@@ -7,7 +7,7 @@ export default async function SuperAdminDashboardLayout({
 }) {
   return (
     <div>
-      <Header />
+      <Header title="Dashboard" />
       {children}
     </div>
   );

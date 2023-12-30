@@ -1,4 +1,4 @@
-import Header from "./_components/header";
+import Header from "../_components/header";
 
 export default async function SuperAdminAlarmsLayout({
   children,
@@ -7,7 +7,7 @@ export default async function SuperAdminAlarmsLayout({
 }) {
   return (
     <div>
-      <Header />
+      <Header title="Alarms" />
       {children}
     </div>
   );

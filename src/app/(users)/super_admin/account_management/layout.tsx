@@ -1,13 +1,13 @@
 import Header from "../_components/header";
 
-export default async function SuperAdminPlantsLayout({
+export default async function SuperAdminAccountsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div>
-      <Header title="Plants" />
+      <Header title="Accounts" />
       {children}
     </div>
   );

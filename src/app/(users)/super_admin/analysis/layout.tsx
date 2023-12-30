@@ -1,4 +1,4 @@
-import Header from "./_components/header";
+import Header from "../_components/header";
 
 export default async function SuperAdminAnalysisLayout({
   children,
@@ -7,7 +7,7 @@ export default async function SuperAdminAnalysisLayout({
 }) {
   return (
     <div>
-      <Header />
+      <Header title="Analytics" />
       {children}
     </div>
   );
