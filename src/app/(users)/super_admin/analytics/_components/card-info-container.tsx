@@ -23,7 +23,7 @@ export default function CardInfoContainer() {
             Today
           </TabsTrigger>
           <TabsTrigger className="truncate justify-start" value="week">
-            Weak to Date
+            Week to Date
           </TabsTrigger>
           <TabsTrigger className="truncate justify-start" value="month">
             Month to Date
