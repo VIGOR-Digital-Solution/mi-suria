@@ -13,12 +13,12 @@ export default function PlantWorkOrder() {
       </CardHeader>
       <CardContent className="text-xs flex items-center justify-around grow">
         <div className="space-y-2 flex flex-col items-center">
-          <div className="text-2xl text-blue-500 font-bold">0</div>
+          <div className="text-2xl text-primary-500 font-bold">0</div>
           <div>Executing</div>
         </div>
 
         <div className="space-y-2 flex flex-col items-center">
-          <div className="text-2xl text-green-500 font-bold">0</div>
+          <div className="text-2xl text-success-500 font-bold">0</div>
           <div>Finished</div>
         </div>
       </CardContent>

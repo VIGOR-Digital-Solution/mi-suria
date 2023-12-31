@@ -4,8 +4,10 @@ import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
+import { useTheme } from "next-themes";
 
 export default function PlannedProductionChart() {
+  const { theme } = useTheme();
   const arrayLength = 7; // Change this value to the desired length of the array
   const minValue = 0; // Minimum value for the random numbers
   const maxValue = 45; // Maximum value for the random numbers
@@ -30,7 +32,7 @@ export default function PlannedProductionChart() {
   ];
   const options: ApexOptions = {
     theme: {
-      mode: "dark",
+      mode: (theme as "light") || "dark",
     },
     chart: {
       background: "transparent",
@@ -50,7 +52,7 @@ export default function PlannedProductionChart() {
       },
       forceNiceScale: true,
     },
-    colors: [colors.blue[400], colors.yellow[300], colors.green[300]],
+    // colors: [colors.blue[400], colors.yellow[300], colors.green[300]],
     xaxis: {
       type: "datetime",
       categories: [

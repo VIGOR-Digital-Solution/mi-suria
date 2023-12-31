@@ -4,8 +4,10 @@ import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
+import { useTheme } from "next-themes";
 
 export default function WeatherChart() {
+  const { theme } = useTheme();
   const arrayLength = 7; // Change this value to the desired length of the array
   const minValue = 20; // Minimum value for the random numbers
   const maxValue = 30; // Maximum value for the random numbers
@@ -28,7 +30,7 @@ export default function WeatherChart() {
   ];
   const options: ApexOptions = {
     theme: {
-      mode: "dark",
+      mode: theme as "light" | "dark",
     },
     chart: {
       background: "transparent",

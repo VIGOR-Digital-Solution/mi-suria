@@ -17,7 +17,7 @@ export default function PlantSubsystem() {
           </CardHeader>
           <CardContent className="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-3">
             <div className="flex flex-col items-center text-sm">
-              <CircleDollarSign color="green" size={50} className="mb-3" />
+              <CircleDollarSign size={50} className="mb-3 text-success-400" />
               <div>Today</div>
               <div>
                 RM <span className="text-lg font-bold">3.01</span>
@@ -25,7 +25,7 @@ export default function PlantSubsystem() {
             </div>
 
             <div className="flex flex-col items-center text-sm">
-              <Coins color="yellow" size={50} className="mb-3" />
+              <Coins size={50} className="mb-3 text-warning-400" />
               <div>This Month</div>
               <div>
                 RM <span className="text-lg font-bold">73.65</span>
@@ -33,7 +33,7 @@ export default function PlantSubsystem() {
             </div>
 
             <div className="flex flex-col items-center text-sm">
-              <BarChart4 color="red" size={50} className="mb-3" />
+              <BarChart4 size={50} className="mb-3 text-danger-400" />
               <div>Lifetime</div>
               <div>
                 RM <span className="text-lg font-bold">798.68</span>
@@ -48,9 +48,9 @@ export default function PlantSubsystem() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="bg-green-800 p-2">Target Net Zero: 2050</div>
+              <div className="bg-success-400 p-2">Target Net Zero: 2050</div>
 
-              <div className="bg-red-800 p-2">
+              <div className="bg-danger-400 p-2">
                 Current contribution to Net Zero: 0.5%
               </div>
             </div>

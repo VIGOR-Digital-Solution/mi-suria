@@ -4,8 +4,10 @@ import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
+import { useTheme } from "next-themes";
 
 export default function ProductionChart() {
+  const { theme } = useTheme();
   const arrayLength = 1; // Change this value to the desired length of the array
   const minValue = 4; // Minimum value for the random numbers
   const maxValue = 100; // Maximum value for the random numbers
@@ -17,7 +19,7 @@ export default function ProductionChart() {
   const series: ApexNonAxisChartSeries = randomNumbers;
   const options: ApexOptions = {
     theme: {
-      mode: "dark",
+      mode: theme as "light" | "dark",
     },
     chart: {
       background: "transparent",

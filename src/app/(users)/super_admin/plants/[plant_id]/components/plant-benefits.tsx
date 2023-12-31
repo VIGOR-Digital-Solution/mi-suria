@@ -22,42 +22,42 @@ export default function PlantBenefits() {
       </CardHeader>
       <CardContent className="text-gray-400 space-y-3 2xl:space-y-0 2xl:gap-y-4 2xl:grid 2xl:grid-cols-2">
         <div className="flex items-center space-x-5">
-          <EggFried color={colors.blue[500]} size={30} />
+          <EggFried size={30} className="text-primary-500" />
           <div>
             <div>Standard Coal Saved</div>
-            <div className="dark:text-white text-xl font-bold">
+            <div className="text-foreground-600 text-xl font-bold">
               0.3 <span className="text-base font-normal">t</span>
             </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-5">
-          <Cloud color={colors.blue[500]} size={30} />
+          <Cloud size={30} className="text-primary-500" />
           <div>
             <div>
               CO<sub>2</sub> Emission Reduction
             </div>
-            <div className="dark:text-white text-xl font-bold">
+            <div className="text-foreground-600 text-xl font-bold">
               0.78 <span className="text-base font-normal">t</span>
             </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-5">
-          <Trees color={colors.blue[500]} size={30} />
+          <Trees size={30} className="text-primary-500" />
           <div>
             <div>Tress Planted</div>
-            <div className="dark:text-white text-xl font-bold">
+            <div className="text-foreground-600 text-xl font-bold">
               54.08 <span className="text-base font-normal">Trees</span>
             </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-5">
-          <BadgeJapaneseYen color={colors.blue[500]} size={30} />
+          <BadgeJapaneseYen size={30} className="text-primary-500" />
           <div>
             <div>Total Yields</div>
-            <div className="dark:text-white text-xl font-bold">--</div>
+            <div className="text-foreground-600 text-xl font-bold">--</div>
           </div>
         </div>
       </CardContent>

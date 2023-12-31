@@ -14,11 +14,11 @@ export default function page({ params }: { params: { plant_id: string } }) {
 
   return (
     <div className="p-6">
-        <h1 className="text-3xl font-bold">{plant?.name}</h1>
-        <div className="flex items-center space-x-2">
-          <CheckCircledIcon color="green" />
-          <span className="text-sm font-light">No alerts</span>
-        </div>
+      <h1 className="text-3xl font-bold">{plant?.name}</h1>
+      <div className="flex items-center space-x-2">
+        <CheckCircledIcon color="green" />
+        <span className="text-sm font-light">No alerts</span>
+      </div>
       <PlantContent />
     </div>
   );
