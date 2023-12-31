@@ -10,12 +10,12 @@ export default function PlantSubsystem() {
       <CardHeader>
         <CardTitle>Subsystem</CardTitle>
       </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-x-5">
+      <CardContent className="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-5">
         <Card>
           <CardHeader>
             <CardTitle>Plant Revenue</CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-3">
+          <CardContent className="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-3">
             <div className="flex flex-col items-center text-sm">
               <CircleDollarSign color="green" size={50} className="mb-3" />
               <div>Today</div>

@@ -23,7 +23,7 @@ import PlantSystemSummary from "./plant-system-summary";
 
 export default function PlantContent() {
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-3 2xl:grid-cols-4 gap-3">
       <div className="col-span-1">
         <PlantLocation />
       </div>
@@ -32,7 +32,7 @@ export default function PlantContent() {
         <PlantProduction />
       </div>
 
-      <div className="col-span-1">
+      <div className="lg:col-span-3 2xl:col-span-1">
         <PlantWeather />
       </div>
 

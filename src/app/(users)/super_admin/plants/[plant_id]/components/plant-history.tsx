@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
 import HistoryChart from "./history-chart";
+import { Separator } from "@/components/ui/separator";
 
 export default function PlantHistory() {
   return (
@@ -10,7 +11,7 @@ export default function PlantHistory() {
         <CardTitle>History</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-around">
+        <div className="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-around">
           <div>
             <div className="text-gray-400">Daily Production</div>
             <div className="font-medium text-lg">
@@ -19,10 +20,14 @@ export default function PlantHistory() {
             </div>
           </div>
 
+          <Separator className="sm:hidden" />
+
           <div>
             <div className="text-gray-400">Daily Irradiation</div>
             <div className="font-medium text-lg">--</div>
           </div>
+
+          <Separator className="sm:hidden" />
 
           <div>
             <div className="text-gray-400">Peak Hours Today</div>
@@ -31,6 +36,8 @@ export default function PlantHistory() {
               <span className="font-normal text-base text-gray-500">h</span>
             </div>
           </div>
+
+          <Separator className="sm:hidden" />
         </div>
 
         <div className="h-52">

@@ -22,7 +22,7 @@ export default function PlantSystemSummary() {
       <CardHeader>
         <CardTitle>System Summary</CardTitle>
       </CardHeader>
-      <CardContent className="grid grid-cols-2">
+      <CardContent className="space-y-5 sm:space-y-0 sm:grid sm:grid-cols-2">
         <div className="font-light flex items-baseline space-x-3">
           <Router size={20} />
           <div>

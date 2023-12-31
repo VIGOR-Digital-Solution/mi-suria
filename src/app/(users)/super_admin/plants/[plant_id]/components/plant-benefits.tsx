@@ -20,7 +20,7 @@ export default function PlantBenefits() {
       <CardHeader>
         <CardTitle>Environmental & Economic Benefits</CardTitle>
       </CardHeader>
-      <CardContent className="text-gray-400 gap-y-4 grid grid-cols-2">
+      <CardContent className="text-gray-400 space-y-3 2xl:space-y-0 2xl:gap-y-4 2xl:grid 2xl:grid-cols-2">
         <div className="flex items-center space-x-5">
           <EggFried color={colors.blue[500]} size={30} />
           <div>

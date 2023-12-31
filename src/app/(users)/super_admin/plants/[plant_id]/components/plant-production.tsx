@@ -10,12 +10,12 @@ export default function PlantProduction() {
         <CardTitle>Production</CardTitle>
       </CardHeader>
       <CardContent className="space-y-10">
-        <div className="grid grid-cols-2">
+        <div className="sm:grid sm:grid-cols-2">
           <div>
             <ProductionChart />
           </div>
 
-          <div className="space-y-4">
+          <div className="grid grid-cols-3 sm:space-y-4 sm:grid-cols-none">
             <div>
               <div className="text-gray-400">Production</div>
               <div className="font-medium text-lg">
@@ -24,7 +24,13 @@ export default function PlantProduction() {
               </div>
             </div>
 
-            <Separator />
+            <div className="sm:hidden flex justify-center">
+              <Separator orientation="vertical" />
+            </div>
+
+            <div className="hidden sm:flex justify-center">
+              <Separator orientation="horizontal" />
+            </div>
 
             <div>
               <div className="text-gray-400">Capacity</div>
@@ -36,7 +42,7 @@ export default function PlantProduction() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 text-xs space-x-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 text-xs gap-2">
           <div className="bg-slate-900 p-2 h-full rounded-sm">
             <div className="text-gray-400 truncate">Daily Production</div>
             <div className="flex space-x-2 items-baseline">

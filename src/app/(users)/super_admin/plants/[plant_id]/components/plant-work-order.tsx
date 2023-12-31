@@ -7,11 +7,11 @@ import InverterRankingsTable from "./inverter-rankings-table";
 
 export default function PlantWorkOrder() {
   return (
-    <Card className="h-full">
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Work Order</CardTitle>
       </CardHeader>
-      <CardContent className="text-xs flex items-center justify-around">
+      <CardContent className="text-xs flex items-center justify-around grow">
         <div className="space-y-2 flex flex-col items-center">
           <div className="text-2xl text-blue-500 font-bold">0</div>
           <div>Executing</div>
