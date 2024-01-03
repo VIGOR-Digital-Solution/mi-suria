@@ -77,6 +77,20 @@ export async function readAccounts() {
     .or(`user_id.eq.${authUserId},created_by.eq.${authUserId}`); // modify based on the related access rule
 }
 
+export async function changePassword(
+  currentPassword: string,
+  newPassword: string
+) {
+  const supabase = await createSupabaseServerClientReadOnly();
+
+  const updateUserResult = await supabase.rpc("change_user_password", {
+    current_plain_password: currentPassword,
+    new_plain_password: newPassword,
+  });
+
+  return JSON.stringify(updateUserResult);
+}
+
 export async function editAccount(
   id: string,
   data: {
