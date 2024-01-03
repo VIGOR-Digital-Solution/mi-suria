@@ -67,7 +67,9 @@ export default async function UserList() {
                 <DeleteUser id={permission.user_id} />
               )}
 
-              <EditUserUi permission={permission} />
+              {authUserId === permission.user_id ? (
+                <EditUserUi permission={permission} />
+              ) : null}
             </div>
           </div>
         );
