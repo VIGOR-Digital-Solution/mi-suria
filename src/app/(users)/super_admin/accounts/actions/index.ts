@@ -105,6 +105,20 @@ export async function editAccount(
   return JSON.stringify(userResult);
 }
 
+export async function changePassword(
+  currentPassword: string,
+  newPassword: string
+) {
+  const supabase = await createSupabaseServerClientReadOnly();
+
+  const updateUserResult = await supabase.rpc("change_user_password", {
+    current_plain_password: currentPassword,
+    new_plain_password: newPassword,
+  });
+
+  return JSON.stringify(updateUserResult);
+}
+
 export async function deleteAccount(id: string) {
   const supabase = await createSupabaseAdmin();
   const deleteResult = await supabase.auth.admin.deleteUser(id);
