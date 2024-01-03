@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { editAccount } from "../../_actions";
+import DialogChangePassword from "./dialog-change-password";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -172,6 +173,8 @@ export default function EditUserForm({
           />
         </Button>
       </form>
+
+      {permission.role === "user" ? <DialogChangePassword /> : null}
     </Form>
   );
 }
