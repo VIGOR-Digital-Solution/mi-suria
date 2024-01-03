@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { editAccount } from "../../actions";
+import DialogChangePassword from "./dialog-change-password";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -60,6 +61,7 @@ export default function EditUserForm({
       if (error?.message) {
         toast({
           title: "Failed",
+          variant: "destructive",
           description: (
             <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
               <code className="text-white">{error.message}</code>
@@ -171,7 +173,15 @@ export default function EditUserForm({
             className={cn(" animate-spin", { hidden: !isPending })}
           />
         </Button>
+
+        {/* <div className="flex justify-end items-center">
+          <Button asChild variant={"link"}>
+            <Link href={"/super_admin/accounts/reset"}>Reset password</Link>
+          </Button>
+        </div> */}
       </form>
+
+      {permission.role === "super-admin" ? <DialogChangePassword /> : null}
     </Form>
   );
 }
