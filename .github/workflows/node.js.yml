@@ -25,5 +25,3 @@ deploy:
   - name: Deploy
     run: |
       ssh user@server 'cd app && git pull origin main && npm install && pm2 reload all'
-
-
