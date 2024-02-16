@@ -1,43 +1,65 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Blue-Green Deployment
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: self-hosted
 
     strategy:
       matrix:
         node-version: [20.10.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    env: 
-      APP_URL: ${{secrets.APP_URL}}
-      DATABASE_URL: ${{secrets.DATABASE_URL}}
-      NEXT_PUBLIC_SUPABASE_URL: ${{secrets.NEXT_PUBLIC_SUPABASE_URL}}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY}}
-      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}}
-      SERVICE_ROLE: ${{secrets.SERVICE_ROLE}}
-
-    
-
+    env:
+      APP_URL: ${{ secrets.APP_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+      SERVICE_ROLE: ${{ secrets.SERVICE_ROLE }}
+      
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - name: Change Directory
-      run: cd /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria
-    - run: pm2 reload all
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the application
+        run: npm run build --if-present
+
+      - name: Deploy to staging
+        run: |
+          # This command will deploy your application to a staging environment
+          # Replace this with your actual deployment commands
+          pm2 startOrRestart ecosystem.config.js --env staging
+
+      - name: Wait for deployment to finish
+        run: sleep 30s  # Adjust this time according to your deployment's needs
+
+      - name: Perform smoke tests on staging
+        run: |
+          # Perform smoke tests to ensure the staging deployment is successful
+          # Replace this with your actual smoke test commands
+
+      - name: Merge PR if tests pass
+        if: success()
+        run: |
+          # Merge the PR only if all the tests pass
+          # Replace this with your actual merge commands
+
+      - name: Deploy to production
+        if: success()
+        run: |
+          # Deploy the built application to production
+          # Replace this with your actual deployment commands
+          pm2 startOrRestart ecosystem.config.js --env production
