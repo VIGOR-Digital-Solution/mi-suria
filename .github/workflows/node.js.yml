@@ -1,4 +1,4 @@
-name: Node.js CI and Deployment
+name: Node.js CI
 
 on:
   push:
@@ -8,11 +8,23 @@ on:
 
 jobs:
   build:
+
     runs-on: self-hosted
 
     strategy:
       matrix:
         node-version: [20.10.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    env: 
+      APP_URL: ${{secrets.APP_URL}}
+      DATABASE_URL: ${{secrets.DATABASE_URL}}
+      NEXT_PUBLIC_SUPABASE_URL: ${{secrets.NEXT_PUBLIC_SUPABASE_URL}}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY}}
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}}
+      SERVICE_ROLE: ${{secrets.SERVICE_ROLE}}
+
+    
 
     steps:
     - uses: actions/checkout@v3
@@ -23,25 +35,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-artifacts
-        path: |
-          path/to/your/build/directory
-
-  deploy:
-    needs: build
-    runs-on: self-hosted
-    steps:
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: build-artifacts
-        path: cd /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria
-    - name: Deploy Application
-      run: |
-        # Your deployment commands here
-        # For example, if using PM2 to manage node processes:
-        cd cd /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria
-        pm2 reload ecosystem.config.js
+    - name: Change Directory
+      run: cd /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria
+    - run: pm2 reload all
