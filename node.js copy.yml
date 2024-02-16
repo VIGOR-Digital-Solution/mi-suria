@@ -8,10 +8,14 @@ on:
 
 jobs:
   build:
+
     runs-on: self-hosted
+
     strategy:
       matrix:
         node-version: [20.10.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     env: 
       APP_URL: ${{secrets.APP_URL}}
       DATABASE_URL: ${{secrets.DATABASE_URL}}
@@ -19,6 +23,9 @@ jobs:
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY}}
       NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}}
       SERVICE_ROLE: ${{secrets.SERVICE_ROLE}}
+
+    
+
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -28,13 +35,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    # Assuming the build artifacts are in a build/ directory
-    - name: Prepare Deployment
-      run: |
-        # Create a new directory for the new build if it doesn't exist
-        mkdir -p /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria-build
-        # Copy new build to the new directory
-        cp -R build/* /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria-build
-    - name: Reload Application with Zero Downtime
-      run: |
-        pm2 reload ecosystem.config.js --update-env
+    - name: Change Directory
+      run: cd /home/vigor-victorlee/actions-runner/_work/mi-suria/mi-suria
+    - run: pm2 reload all
