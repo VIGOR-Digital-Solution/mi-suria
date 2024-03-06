@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { NextUIAppProvider } from "@/components/next-ui-app-provider";
 import QueryClientAppProvider from "@/components/query-client-app-provider";
+import SimulationProvider from "@/components/simulation-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system">
           <NextUIAppProvider>
-            <QueryClientAppProvider>{children}</QueryClientAppProvider>
+            <QueryClientAppProvider>
+              {children}
+              {/* <SimulationProvider>{children}</SimulationProvider> */}
+            </QueryClientAppProvider>
 
             <Toaster />
           </NextUIAppProvider>
