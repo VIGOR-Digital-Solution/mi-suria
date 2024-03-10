@@ -9,9 +9,8 @@ declare module global {
 
 let tsdbClient;
 
-const connectionString =
-  "postgres://tsdbadmin@lzvccok4h7.nsp25iwq8b.tsdb.cloud.timescale.com:33417/tsdb?sslmode=require";
-const password = "vigorvigor123";
+const connectionString = process.env.TIMESCALE_DB_URL!;
+const password = process.env.TIMESCALE_DB_PASSWORD!;
 
 if (process.env.NODE_ENV !== "production") {
   if (!global.tsdbClient) {
