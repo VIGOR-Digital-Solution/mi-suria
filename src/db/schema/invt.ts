@@ -2,7 +2,10 @@ import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const invt = pgTable("invt", {
   sn: text("sn"),
-  timestamp: timestamp("timestamp", { mode: "string" }),
+  timestamp: timestamp("timestamp", {
+    withTimezone: true,
+    mode: "string",
+  }).notNull(),
   internaltemp: integer("internaltemp"),
   pv1InputVoltageV: integer("pv1_input_voltage_v"),
   pv1InputCurrentA: integer("pv1_input_current_a"),
