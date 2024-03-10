@@ -10,6 +10,8 @@ import {
 } from "@nextui-org/react";
 import { Cloudy, Droplets, Sun, TreePine, Wind } from "lucide-react";
 import Carousel from "./carousel";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const weathers = [
   {
@@ -74,7 +76,12 @@ const CardItem = ({
         </div>
         <div className="col-span-1">
           <div className="p-10 flex items-center justify-center bg-gray-100">
-            <p className="text-black">{data.icon}</p>
+            <Image
+              src={data.icon.url}
+              width={100}
+              height={100}
+              alt={data.icon.text}
+            />
           </div>
           <div className="flex justify-around bg-foreground-500">
             {data.components.map((component: any, index: any) => (
@@ -96,7 +103,47 @@ const CardItem = ({
   );
 };
 
+function fetchWeather() {
+  return axios.get(`/api/tsdb/weather`);
+}
+
 export default function CardWeatherForecast() {
+  const { data: weatherData, isPending: isPendingWeatherData } = useQuery({
+    queryKey: ["weather"],
+    queryFn: fetchWeather,
+    // refetchInterval: 30000,
+  });
+
+  const testWeathers = weatherData?.data.bulk.map((data: any) => ({
+    degree: data.query.current.temp_c,
+    unitDegree: "C",
+    location: data.query.location.region,
+    icon: {
+      url: data.query.current.condition.icon,
+      text: data.query.current.condition.text,
+    },
+    components: [
+      {
+        name: "humidity",
+        value: data.query.current.humidity,
+        unitValue: "MM",
+        icon: <Droplets />,
+      },
+      {
+        name: "wind",
+        value: data.query.current.wind_mph,
+        unitValue: "MPH",
+        icon: <Wind />,
+      },
+    ],
+  }));
+
+  console.log(weatherData?.data);
+
+  if (isPendingWeatherData) {
+    return <div className="h-full">Loading...</div>;
+  }
+
   return (
     <Card shadow="sm" className="h-full">
       <CardHeader>
@@ -111,7 +158,7 @@ export default function CardWeatherForecast() {
       <CardBody>
         <div className="overflow-hidden">
           <Carousel>
-            {weathers.map((weather, index) => (
+            {testWeathers.map((weather: any, index: any) => (
               <CardItem key={index} data={weather} />
             ))}
           </Carousel>

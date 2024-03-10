@@ -7,7 +7,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 import { IPlant } from "@/lib/types";
-import { CheckCircledIcon } from "@radix-ui/react-icons";
+import {
+  CheckCircledIcon,
+  ExclamationTriangleIcon,
+  MinusCircledIcon,
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import TrendChart from "./trend-chart";
 
@@ -53,7 +57,13 @@ export const columns: ColumnDef<IPlant>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <CheckCircledIcon color="green" />
+          {row.original.isAlert == undefined ? (
+            <MinusCircledIcon />
+          ) : row.original.isAlert ? (
+            <ExclamationTriangleIcon color="yellow" />
+          ) : (
+            <CheckCircledIcon color="green" />
+          )}
         </div>
       );
     },
@@ -89,20 +99,6 @@ export const columns: ColumnDef<IPlant>[] = [
     },
   },
   {
-    accessorKey: "trend",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Trend" />
-    ),
-    cell: ({ row }) => (
-      <div className="h-10 w-10">
-        <TrendChart />
-      </div>
-    ),
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
-  },
-  {
     accessorKey: "dailyProduction",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Daily Production" />
@@ -113,15 +109,29 @@ export const columns: ColumnDef<IPlant>[] = [
     },
   },
   {
-    accessorKey: "peakHoursToday",
+    accessorKey: "trend",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Peak Hours Today" />
+      <DataTableColumnHeader column={column} title="Trend" />
     ),
-    cell: ({ row }) => <div>{row.getValue("peakHoursToday")}h</div>,
+    cell: ({ row }) => (
+      <div className="h-10 w-10">
+        <TrendChart period="daily" />
+      </div>
+    ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
   },
+  // {
+  //   accessorKey: "peakHoursToday",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Peak Hours Today" />
+  //   ),
+  //   cell: ({ row }) => <div>{row.getValue("peakHoursToday")}h</div>,
+  //   filterFn: (row, id, value) => {
+  //     return value.includes(row.getValue(id));
+  //   },
+  // },
   {
     id: "actions",
     cell: ({ row }) => (

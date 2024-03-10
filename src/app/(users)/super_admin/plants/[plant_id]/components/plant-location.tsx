@@ -11,7 +11,7 @@ export default function PlantLocation() {
       <CardContent className="px-3 space-y-4">
         <div className="flex items-center justify-between text-sm">
           <div>Address</div>
-          <div>Kuala Lumpur</div>
+          <div className="truncate max-w-[20rem]">Kuala Lumpur, Selangor</div>
         </div>
 
         <div className="flex items-center justify-between text-sm">

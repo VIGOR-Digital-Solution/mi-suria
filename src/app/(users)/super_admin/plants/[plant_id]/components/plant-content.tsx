@@ -21,7 +21,7 @@ import PlantWorkOrder from "./plant-work-order";
 import PlantBenefits from "./plant-benefits";
 import PlantSystemSummary from "./plant-system-summary";
 
-export default function PlantContent() {
+export default function PlantContent({ data }: { data: any[] }) {
   return (
     <div className="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-3 2xl:grid-cols-4 gap-3">
       <div className="col-span-1">
@@ -29,7 +29,7 @@ export default function PlantContent() {
       </div>
 
       <div className="col-span-2">
-        <PlantProduction />
+        <PlantProduction data={data} />
       </div>
 
       <div className="lg:col-span-3 2xl:col-span-1">
@@ -41,23 +41,23 @@ export default function PlantContent() {
       </div>
 
       <div className="col-span-4">
-        <PlantSubsystem />
+        <PlantSubsystem data={data} />
       </div>
 
-      <div className="col-span-2">
+      {/* <div className="col-span-2">
         <PlantInverterRankings />
-      </div>
+      </div> */}
 
-      <div className="col-span-2">
+      <div className="col-span-4">
         <PlantPlannedProduction />
       </div>
 
       <div className="col-span-2">
-        <PlantWorkOrder />
+        <PlantBenefits data={data} />
       </div>
 
       <div className="col-span-2">
-        <PlantBenefits />
+        <PlantWorkOrder />
       </div>
 
       <div className="col-span-4">

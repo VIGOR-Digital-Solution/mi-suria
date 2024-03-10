@@ -10,30 +10,6 @@ import {
 } from "@nextui-org/react";
 import { EggFried, Grip, TreePine } from "lucide-react";
 
-const impacts = [
-  {
-    title: "Carbon Emissions Saved",
-    description: "Carbon info will be here",
-    value: 2.72,
-    unitValue: "Tons",
-    icon: <Grip />,
-  },
-  {
-    title: "Trees Planted Equivalent",
-    description: "Trees planted info will be here",
-    value: 1.09,
-    unitValue: "HA",
-    icon: <TreePine />,
-  },
-  {
-    title: "Coal Saved",
-    description: "Coal info will be here",
-    value: 1.8,
-    unitValue: "Tons",
-    icon: <EggFried />,
-  },
-];
-
 const CardItem = ({
   data,
   enableDivider = false,
@@ -54,8 +30,11 @@ const CardItem = ({
       </div>
       <div className="sm:col-span-1 flex justify-end">
         <p className="font-semibold">
-          {data.value} {data.unitValue}
+          {data?.value == undefined ? "-" : Math.floor(data.value * 100) / 100}{" "}
+          {data.unitValue}
         </p>
+
+        {/* data.value */}
       </div>
 
       <div className="sm:col-span-5">{enableDivider ? <Divider /> : null}</div>
@@ -63,15 +42,15 @@ const CardItem = ({
   );
 };
 
-export default function CardEnvironmental() {
+export default function CardEnvironmental({ impacts }: { impacts: any[] }) {
   return (
     <Card shadow="sm" className="p-5">
       <CardHeader className="absolute z-10 top-1">
         <div>
           <p className="font-semibold text-white">Environmental Impacts</p>
-          <p className="text-sm font-medium text-gray-300">
+          {/* <p className="text-sm font-medium text-gray-300">
             Subtitle environmental
-          </p>
+          </p> */}
         </div>
       </CardHeader>
 

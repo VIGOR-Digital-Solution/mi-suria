@@ -35,9 +35,9 @@ export default function CurrentWOChart({
   );
 
   const series: ApexNonAxisChartSeries = [
-    openValue,
-    closedValue,
-    inprogressValue,
+    // openValue,
+    // closedValue,
+    // inprogressValue,
   ];
   const options: ApexOptions = {
     theme: {
@@ -56,6 +56,9 @@ export default function CurrentWOChart({
     legend: {
       show: true,
       position: "bottom",
+      onItemClick: {
+        toggleDataSeries: false,
+      },
     },
     colors: [colors.green[400], colors.blue[400], colors.gray[400]],
     // dataLabels: {
@@ -99,6 +102,9 @@ export default function CurrentWOChart({
     //   type: "category",
     //   categories: consecutiveNumbersArray,
     // },
+    noData: {
+      text: "N/A",
+    },
   };
 
   return (

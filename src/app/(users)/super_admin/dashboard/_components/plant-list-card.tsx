@@ -13,26 +13,26 @@ import { Zap } from "lucide-react";
 
 const plants = [
   {
-    name: "Plant A",
-    location: "Kajang, Selangor",
+    name: "Plant 1",
+    location: "NO: 5 & 7, Jln Bukit Bintang, 55100 Kuala Lumpur, Selangor",
     status: "success",
-    value: 8,
-    max: 10,
+    value: 1,
+    max: 1,
   },
-  {
-    name: "Plant B",
-    location: "Tanjung Malim, Perak",
-    status: "danger",
-    value: 3,
-    max: 10,
-  },
-  {
-    name: "Plant C",
-    location: "Kuala Siput, Johor",
-    status: "warning",
-    value: 5,
-    max: 10,
-  },
+  // {
+  //   name: "Plant 2",
+  //   location: "Kedah",
+  //   status: "success",
+  //   value: 1,
+  //   max: 1,
+  // },
+  // {
+  //   name: "Plant C",
+  //   location: "Kuala Siput, Johor",
+  //   status: "warning",
+  //   value: 5,
+  //   max: 10,
+  // },
 ];
 
 const CardItem = ({ data }: { data: any }) => {
@@ -81,9 +81,9 @@ export default function PlantListCard() {
               List of the plants
             </p>
           </div>
-          <Link size="sm" href="#">
+          {/* <Link size="sm" href="#">
             All List
-          </Link>
+          </Link> */}
         </div>
       </CardHeader>
 

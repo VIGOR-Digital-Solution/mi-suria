@@ -27,7 +27,7 @@ export default function CardInfoContainer() {
       <CardInfo
         title="Today's Alarms"
         subtitle="Problems triggered"
-        value="12"
+        value="0"
         unitValue="Alarms"
         className="bg-rose-500 text-white"
         logo={<BellRing size={40} />}
@@ -35,7 +35,7 @@ export default function CardInfoContainer() {
       <CardInfo
         title="Work Order Issued Today"
         subtitle="Problems triggered"
-        value="3"
+        value="0"
         unitValue="Orders"
         className="bg-violet-600 text-white"
         logo={<ClipboardCheck size={40} />}
@@ -43,7 +43,7 @@ export default function CardInfoContainer() {
       <CardInfo
         title="Work Order Closed Today"
         subtitle="Completed orders"
-        value="25"
+        value="0"
         unitValue="Orders"
         className="bg-blue-500 text-white"
         logo={<FolderCheck size={40} />}

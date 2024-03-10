@@ -11,51 +11,6 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
 
-const plants = [
-  {
-    name: "Plant A",
-    location: "Kajang, Selangor",
-    status: "Running",
-    value: 2.05,
-    unitValue: "KW",
-  },
-  {
-    name: "Plant B",
-    location: "Seremban, N.Sembilan",
-    status: "Running",
-    value: 5.25,
-    unitValue: "KW",
-  },
-  {
-    name: "Plant C",
-    location: "Taiping, Perak",
-    status: "Offline",
-    value: 2.05,
-    unitValue: "KW",
-  },
-  {
-    name: "Plant D",
-    location: "Bukit Jalil, Kuala Lumpur",
-    status: "Running",
-    value: 2.05,
-    unitValue: "KW",
-  },
-  {
-    name: "Plant E",
-    location: "Kuantan, Pahang",
-    status: "Running",
-    value: 2.05,
-    unitValue: "KW",
-  },
-  {
-    name: "Plant F",
-    location: "Kemaman, Terengganu",
-    status: "Offline",
-    value: 2.05,
-    unitValue: "KW",
-  },
-];
-
 const CardItem = ({
   data,
   enableDivider,
@@ -91,7 +46,8 @@ const CardItem = ({
       </div>
       <div className="sm:col-span-1 flex justify-end">
         <p className="font-semibold">
-          {data.value} {data.unitValue}
+          {data.value}
+          {/* {data.unitValue} */}
         </p>
       </div>
 
@@ -100,7 +56,56 @@ const CardItem = ({
   );
 };
 
-export default function CardWatchList() {
+export default function CardWatchList({
+  activePower,
+}: {
+  activePower: string;
+}) {
+  const plants = [
+    {
+      name: "Plant 1",
+      location: "NO: 5 & 7, Jln Bukit Bintang, 55100 Kuala Lumpur, Selangor",
+      status: "Running",
+      value: activePower,
+      // unitValue: activePower,
+    },
+    // {
+    //   name: "Plant 2",
+    //   location: "Kedah",
+    //   status: "Running",
+    //   value: activePower,
+    //   unitValue: activePower === "N/A" ? "" : "KW",
+    // },
+    // {
+    //   name: "Plant C",
+    //   location: "Taiping, Perak",
+    //   status: "Offline",
+    //   value: 2.05,
+    //   unitValue: "KW",
+    // },
+    // {
+    //   name: "Plant D",
+    //   location: "Bukit Jalil, Kuala Lumpur",
+    //   status: "Running",
+    //   value: 2.05,
+    //   unitValue: "KW",
+    // },
+    // {
+    //   name: "Plant E",
+    //   location: "Kuantan, Pahang",
+    //   status: "Running",
+    //   value: 2.05,
+    //   unitValue: "KW",
+    // },
+    // {
+    //   name: "Plant F",
+    //   location: "Kemaman, Terengganu",
+    //   status: "Offline",
+    //   value: 2.05,
+    //   unitValue: "KW",
+    // },
+  ];
+
   return (
     <Card shadow="sm" className="h-full max-h-[500px] p-5">
       <CardHeader>
@@ -111,9 +116,9 @@ export default function CardWatchList() {
               List of the plants
             </p>
           </div>
-          <Link size="sm" href="#">
+          {/* <Link size="sm" href="#">
             All List
-          </Link>
+          </Link> */}
         </div>
       </CardHeader>
 

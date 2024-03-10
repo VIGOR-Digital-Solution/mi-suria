@@ -3,7 +3,50 @@ import { Separator } from "@/components/ui/separator";
 import React from "react";
 import ProductionChart from "./production-chart";
 
-export default function PlantProduction() {
+function SideCard({
+  title,
+  value,
+  unit,
+}: {
+  title: string;
+  value: string;
+  unit: string;
+}) {
+  return (
+    <div>
+      <div className="text-foreground-500">{title}</div>
+      <div className="font-medium text-lg">
+        {value}{" "}
+        <span className="font-normal text-base text-foreground-500">
+          {unit}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default function PlantProduction({ data }: { data: any[] }) {
+  function getPowerYield(field: "dpy" | "mpy" | "tpy") {
+    let powerYield = data?.[0][field] / 10;
+    return powerYield;
+  }
+
+  function getProduction() {
+    let production = data?.[0].tap;
+    return Math.floor((Number(production) / 1000) * 100) / 100;
+  }
+
+  function getCapacity() {
+    let capacity = 3.3;
+    return capacity;
+  }
+
+  function getPower() {
+    let production = getProduction();
+    let capacity = getCapacity();
+    return capacity / production;
+  }
+
   return (
     <Card className="h-full">
       <CardHeader>
@@ -12,19 +55,17 @@ export default function PlantProduction() {
       <CardContent className="space-y-10">
         <div className="sm:grid sm:grid-cols-2">
           <div>
-            <ProductionChart />
+            <ProductionChart value={getPower()} />
           </div>
 
           <div className="grid grid-cols-3 sm:space-y-4 sm:grid-cols-none">
-            <div>
-              <div className="text-foreground-500">Production</div>
-              <div className="font-medium text-lg">
-                979.1{" "}
-                <span className="font-normal text-base text-foreground-500">
-                  w
-                </span>
-              </div>
-            </div>
+            <SideCard
+              title="Production"
+              value={
+                getProduction() == undefined ? "N/A" : `${getProduction()}`
+              }
+              unit={`${getProduction() == undefined ? "" : "kW"}`}
+            />
 
             <div className="sm:hidden flex justify-center">
               <Separator orientation="vertical" />
@@ -34,23 +75,19 @@ export default function PlantProduction() {
               <Separator orientation="horizontal" />
             </div>
 
-            <div>
-              <div className="text-foreground-500">Capacity</div>
-              <div className="font-medium text-lg">
-                20{" "}
-                <span className="font-normal text-base text-foreground-500">
-                  kWp
-                </span>
-              </div>
-            </div>
+            <SideCard
+              title="Production"
+              value={getCapacity() == undefined ? "N/A" : `${getCapacity()}`}
+              unit={`${getCapacity() == undefined ? "" : "kWp"}`}
+            />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 text-xs gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 text-xs gap-2">
           <div className="bg-primary-50 p-2 h-full rounded-sm">
             <div className="text-foreground-500 truncate">Daily Production</div>
             <div className="flex space-x-2 items-baseline">
-              <div className="font-medium text-lg">38.2</div>
+              <div className="font-medium text-lg">{getPowerYield("dpy")}</div>
               <div className="font-normal text-foreground-500">kWh</div>
             </div>
           </div>
@@ -60,7 +97,7 @@ export default function PlantProduction() {
               Monthly Production
             </div>
             <div className="flex space-x-2 items-baseline">
-              <div className="font-medium text-lg">38</div>
+              <div className="font-medium text-lg">{getPowerYield("mpy")}</div>
               <div className="font-normal  text-foreground-500 ">kWh</div>
             </div>
           </div>
@@ -70,12 +107,12 @@ export default function PlantProduction() {
               Yearly Production
             </div>
             <div className="flex space-x-2 items-baseline">
-              <div className="font-medium text-lg">38</div>
+              <div className="font-medium text-lg">{getPowerYield("tpy")}</div>
               <div className="font-normal  text-foreground-500 ">kWh</div>
             </div>
           </div>
 
-          <div className="bg-primary-50 p-2 h-full rounded-sm">
+          {/* <div className="bg-primary-50 p-2 h-full rounded-sm">
             <div className="text-foreground-500  truncate">
               Total Production
             </div>
@@ -83,7 +120,7 @@ export default function PlantProduction() {
               <div className="font-medium text-lg">992.8</div>
               <div className="font-normal  text-foreground-500 ">kWh</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </CardContent>
     </Card>

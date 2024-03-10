@@ -5,24 +5,27 @@ import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
 import { useTheme } from "next-themes";
+import { addHours, format } from "date-fns";
 
-export default function HistoryChart() {
+export default function HistoryChart({ data }: { data: any[] }) {
   const { theme } = useTheme();
-  const arrayLength = 7; // Change this value to the desired length of the array
-  const minValue = 0; // Minimum value for the random numbers
-  const maxValue = 1.5; // Maximum value for the random numbers
+  // const arrayLength = 7; // Change this value to the desired length of the array
+  // const minValue = 0; // Minimum value for the random numbers
+  // const maxValue = 1.5; // Maximum value for the random numbers
 
-  const randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
-  const randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
+  // const randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
+  // const randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
+  const dailyYieldPowerValues = data.map(
+    (d) => Math.floor((Number(d.dpy) * 100) / 100) / 10
+  );
+  const dailyYieldPowerTime = data.map((d) =>
+    format(addHours(d.bucket, 8), "yyyy/MM/dd HH:mm:ss")
+  );
 
   const series: ApexAxisChartSeries = [
     {
-      name: "Production",
-      data: randomNumbers,
-    },
-    {
-      name: "Weather",
-      data: randomNumbers2,
+      name: "Daily Yield Power",
+      data: dailyYieldPowerValues,
     },
   ];
   const options: ApexOptions = {
@@ -34,6 +37,9 @@ export default function HistoryChart() {
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
     },
     stroke: {
       curve: "smooth",
@@ -42,25 +48,25 @@ export default function HistoryChart() {
       show: false,
     },
     yaxis: {
-      min: 0,
-      max: 1.5,
-      decimalsInFloat: 1,
-      title: {
-        text: "kW",
+      // min: 0,
+      // max: 1.5,
+      decimalsInFloat: 2,
+      // title: {
+      //   text: "kW",
+      // },
+      // forceNiceScale: true,
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
       },
-      forceNiceScale: true,
     },
     xaxis: {
       type: "datetime",
-      categories: [
-        new Date("2023-11-27T00:00:00Z").getTime(),
-        new Date("2023-11-27T01:00:00Z").getTime(),
-        new Date("2023-11-27T02:00:00Z").getTime(),
-        new Date("2023-11-27T03:00:00Z").getTime(),
-        new Date("2023-11-27T04:00:00Z").getTime(),
-        new Date("2023-11-27T05:00:00Z").getTime(),
-        new Date("2023-11-27T06:00:00Z").getTime(),
-      ],
+      categories: dailyYieldPowerTime,
+      labels: {
+        datetimeUTC: false,
+      },
     },
   };
 

@@ -6,7 +6,7 @@ export default function AnalyticsPage() {
   return (
     <div className="px-6 space-y-5">
       <CardInfoContainer />
-      <SummaryCard />
+      {/* <SummaryCard /> */}
     </div>
   );
 }

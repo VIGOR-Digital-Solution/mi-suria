@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -17,10 +18,23 @@ import {
   ChevronUp,
   DatabaseZap,
   LucideIcon,
+  Minus,
 } from "lucide-react";
 import CardInfoChart from "./card-info-chart";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+function fetchBucketedPowerYield({
+  period,
+}: {
+  period: "daily" | "monthly" | "yearly";
+}) {
+  return axios.get(`/api/tsdb/bucketed_power_yield?period=${period}`);
+}
 
 export default function CardInfo({
+  type,
+  period,
   title,
   value,
   unitValue,
@@ -32,15 +46,51 @@ export default function CardInfo({
   className,
   ...props
 }: {
+  type: "power" | "revenue";
+  period: "daily" | "monthly" | "yearly";
   title: string;
   value: string;
   unitValue: string;
-  status: "up" | "down";
+  status: "up" | "down" | "neutral";
   diffValue: string;
   unitDiffValue: string;
   logo: React.ReactNode;
   textBackgroundEnabled?: boolean;
 } & CardProps) {
+  const { data: bucketedPowerYield, isLoading: isLoadingBucketedPowerYield } =
+    useQuery({
+      queryKey: ["bucketed_power_yield", period],
+      queryFn: () => fetchBucketedPowerYield({ period }),
+      refetchInterval: 30000,
+    });
+
+  function getData() {
+    let data = bucketedPowerYield?.data.map((d: any) => {
+      let field = "dpy";
+      switch (period) {
+        case "monthly":
+          field = "mpy";
+          break;
+        case "yearly":
+          field = "tpy";
+          break;
+        default:
+          break;
+      }
+      let powerYield = d[field] / 10;
+      if (type === "power") return { ...d, value: powerYield };
+      if (type === "revenue") {
+        let tariff = 0.57; // static value refer to tariff given by mimos
+        return { ...d, value: Math.floor(powerYield * tariff * 1000) / 1000 };
+      }
+    });
+    return data;
+  }
+
+  if (isLoadingBucketedPowerYield) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Card shadow="sm" className={cn("p-5", className)} {...props}>
       <CardHeader>
@@ -60,13 +110,21 @@ export default function CardInfo({
               {/* size="sm" className="h-5 bg-primary-100" radius="sm" */}
               <Chip
                 startContent={
-                  status === "up" ? (
+                  status === "neutral" ? (
+                    <Minus size={12} className="text-neutral-500" />
+                  ) : status === "up" ? (
                     <ArrowUp size={12} className="text-success-500" />
                   ) : (
                     <ArrowDown size={12} className="text-danger-500" />
                   )
                 }
-                color="success"
+                color={
+                  status === "neutral"
+                    ? "default"
+                    : status === "up"
+                    ? "success"
+                    : "danger"
+                }
                 size="sm"
                 className="h-5 bg-success-50"
                 radius="sm"
@@ -96,7 +154,7 @@ export default function CardInfo({
 
       <CardBody>
         <div className="h-32">
-          <CardInfoChart />
+          <CardInfoChart data={getData()} period={period} type={type} />
         </div>
       </CardBody>
 

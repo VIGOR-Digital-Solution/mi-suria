@@ -13,61 +13,33 @@ import { Label } from "@radix-ui/react-label";
 import React from "react";
 import CardInfo from "./card-info";
 import { BatteryFull, CircleDollarSign, DatabaseZap } from "lucide-react";
+import CardInfoRow from "./card-info-row";
 
 export default function CardInfoContainer() {
   return (
     <div>
-      <Tabs defaultValue="today" className="space-y-5">
-        <TabsList className="grid grid-cols-4 w-fit">
-          <TabsTrigger className="truncate justify-start" value="today">
-            Today
+      <Tabs defaultValue="daily" className="space-y-5">
+        <TabsList className="grid grid-cols-3 w-fit">
+          <TabsTrigger className="" value="daily">
+            Daily
           </TabsTrigger>
-          <TabsTrigger className="truncate justify-start" value="week">
-            Week to Date
+          <TabsTrigger className="" value="monthly">
+            Monthly
           </TabsTrigger>
-          <TabsTrigger className="truncate justify-start" value="month">
-            Month to Date
-          </TabsTrigger>
-          <TabsTrigger className="truncate justify-start" value="year">
-            Year to Date
+          <TabsTrigger className="" value="yearly">
+            Yearly
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="today">
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-5 xl:gap-x-5">
-            <CardInfo
-              title="Total Power"
-              value="87.40"
-              unitValue="kWh"
-              diffValue="2.2"
-              unitDiffValue="%"
-              status="up"
-              logo={<DatabaseZap size={40} className="text-foreground-400" />}
-              // className="bg-primary-800"
-              // textBackgroundEnabled
-            />
-            <CardInfo
-              title="Total Yield"
-              value="17.19"
-              unitValue="kWh"
-              diffValue="10.2"
-              unitDiffValue="%"
-              status="down"
-              logo={<BatteryFull size={40} className="text-foreground-400" />}
-            />
-            <CardInfo
-              title="Total Revenue"
-              value="1.97"
-              unitValue="USD"
-              diffValue="62"
-              unitDiffValue="%"
-              status="down"
-              logo={
-                <CircleDollarSign size={40} className="text-foreground-400" />
-              }
-            />
-          </div>
+        <TabsContent value="daily">
+          <CardInfoRow period="daily" />
         </TabsContent>
-        <TabsContent value="week">
+        <TabsContent value="monthly">
+          <CardInfoRow period="monthly" />
+        </TabsContent>
+        <TabsContent value="yearly">
+          <CardInfoRow period="yearly" />
+        </TabsContent>
+        {/* <TabsContent value="year">
           <div className="grid grid-cols-3 space-x-5">
             <CardInfo
               title="Total Yield"
@@ -79,33 +51,7 @@ export default function CardInfoContainer() {
               logo={<BatteryFull size={40} className="text-foreground-400" />}
             />
           </div>
-        </TabsContent>
-        <TabsContent value="month">
-          <div className="grid grid-cols-3 space-x-5">
-            <CardInfo
-              title="Total Yield"
-              value="17.19"
-              unitValue="kWh"
-              diffValue="10.2"
-              unitDiffValue="%"
-              status="down"
-              logo={<BatteryFull size={40} className="text-foreground-400" />}
-            />
-          </div>
-        </TabsContent>
-        <TabsContent value="year">
-          <div className="grid grid-cols-3 space-x-5">
-            <CardInfo
-              title="Total Yield"
-              value="17.19"
-              unitValue="kWh"
-              diffValue="10.2"
-              unitDiffValue="%"
-              status="down"
-              logo={<BatteryFull size={40} className="text-foreground-400" />}
-            />
-          </div>
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
     </div>
   );

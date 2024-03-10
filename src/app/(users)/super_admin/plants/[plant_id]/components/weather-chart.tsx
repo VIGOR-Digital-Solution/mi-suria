@@ -6,26 +6,34 @@ import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
 import { useTheme } from "next-themes";
 
-export default function WeatherChart() {
+export default function WeatherChart({
+  forecastDays,
+}: {
+  forecastDays: any[];
+}) {
   const { theme } = useTheme();
-  const arrayLength = 7; // Change this value to the desired length of the array
-  const minValue = 20; // Minimum value for the random numbers
-  const maxValue = 30; // Maximum value for the random numbers
+  // const arrayLength = 7; // Change this value to the desired length of the array
+  // const minValue = 20; // Minimum value for the random numbers
+  // const maxValue = 30; // Maximum value for the random numbers
 
-  let randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
-  randomNumbers = randomNumbers.map((number) => Number(number.toFixed(0)));
+  // let randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
+  // randomNumbers = randomNumbers.map((number) => Number(number.toFixed(0)));
 
-  let randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
-  randomNumbers2 = randomNumbers2.map((number) => Number(number.toFixed(0)));
+  // let randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
+  // randomNumbers2 = randomNumbers2.map((number) => Number(number.toFixed(0)));
+
+  const tempCData = forecastDays.map((forecast) => forecast.day.avgtemp_c);
+  const tempFData = forecastDays.map((forecast) => forecast.day.avgtemp_f);
+  const date = forecastDays.map((forecast) => forecast.date);
 
   const series: ApexAxisChartSeries = [
     {
-      name: "Up",
-      data: randomNumbers,
+      name: "Celsius",
+      data: tempCData,
     },
     {
-      name: "Bottom",
-      data: randomNumbers2,
+      name: "Fahrenheit",
+      data: tempFData,
     },
   ];
   const options: ApexOptions = {
@@ -40,6 +48,15 @@ export default function WeatherChart() {
       sparkline: {
         enabled: true,
       },
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy",
+      },
+    },
+    xaxis: {
+      type: "datetime",
+      categories: date,
     },
     stroke: {
       curve: "smooth",

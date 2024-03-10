@@ -27,18 +27,18 @@ export default function SummaryWOChart() {
   );
 
   const series: ApexAxisChartSeries = [
-    {
-      name: "Open",
-      data: [10, 2, 7, 15],
-    },
-    {
-      name: "In progress",
-      data: [10, 15, 11, 6],
-    },
-    {
-      name: "Closed",
-      data: [10, 3, 12, 1],
-    },
+    // {
+    //   name: "Open",
+    //   data: [10, 2, 7, 15],
+    // },
+    // {
+    //   name: "In progress",
+    //   data: [10, 15, 11, 6],
+    // },
+    // {
+    //   name: "Closed",
+    //   data: [10, 3, 12, 1],
+    // },
   ];
   const options: ApexOptions = {
     theme: {
@@ -98,6 +98,9 @@ export default function SummaryWOChart() {
         "01/07/2023 GMT",
         "01/08/2023 GMT",
       ],
+    },
+    noData: {
+      text: "N/A",
     },
   };
 

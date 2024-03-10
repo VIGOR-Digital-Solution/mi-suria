@@ -61,7 +61,7 @@ export const columns: ColumnDef<IDevice>[] = [
       return (
         <div>
           {row.original.status === "active" ? (
-            <CheckCircledIcon />
+            <CheckCircledIcon color="green" />
           ) : (
             <MinusCircledIcon />
           )}
@@ -79,22 +79,22 @@ export const columns: ColumnDef<IDevice>[] = [
       return value.includes(row.getValue(id));
     },
   },
-  {
-    accessorKey: "dcDiscrete",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="DC Discrete" />
-    ),
-    cell: ({ row }) => <div>--</div>,
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
-  },
+  // {
+  //   accessorKey: "dcDiscrete",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="DC Discrete" />
+  //   ),
+  //   cell: ({ row }) => <div>--</div>,
+  //   filterFn: (row, id, value) => {
+  //     return value.includes(row.getValue(id));
+  //   },
+  // },
   {
     accessorKey: "production",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Production" />
     ),
-    cell: ({ row }) => <div>{row.getValue("production")}</div>,
+    cell: ({ row }) => <div>{row.getValue("production")} kW</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
@@ -104,21 +104,21 @@ export const columns: ColumnDef<IDevice>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Daily Production" />
     ),
-    cell: ({ row }) => <div>{row.getValue("dailyProduction")}</div>,
+    cell: ({ row }) => <div>{row.getValue("dailyProduction")} kWh</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
   },
-  {
-    accessorKey: "peakHoursToday",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Peak Hours Today" />
-    ),
-    cell: ({ row }) => <div>--</div>,
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
-  },
+  // {
+  //   accessorKey: "peakHoursToday",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Peak Hours Today" />
+  //   ),
+  //   cell: ({ row }) => <div>--</div>,
+  //   filterFn: (row, id, value) => {
+  //     return value.includes(row.getValue(id));
+  //   },
+  // },
   // {
   //   id: "actions",
   //   cell: ({ row }) => (

@@ -27,11 +27,11 @@ export default function PlantSystemSummary() {
           <Router size={20} />
           <div>
             <div>
-              Inverter <span className="text-xl font-bold">2</span>
+              Inverter <span className="text-xl font-bold">1</span>
             </div>
             <div className="flex space-x-3">
               <div>
-                <span className="text-xl font-bold">2</span> Offline
+                <span className="text-xl font-bold">0</span> Offline
               </div>
               <div>
                 <span className="text-xl font-bold">0</span> Alerts
@@ -44,11 +44,11 @@ export default function PlantSystemSummary() {
           <CalendarRange size={20} />
           <div>
             <div>
-              Inverter <span className="text-xl font-bold">2</span>
+              Inverter <span className="text-xl font-bold">1</span>
             </div>
             <div className="flex space-x-3">
               <div>
-                <span className="text-xl font-bold">2</span> Offline
+                <span className="text-xl font-bold">0</span> Offline
               </div>
               <div>
                 <span className="text-xl font-bold">0</span> Alerts

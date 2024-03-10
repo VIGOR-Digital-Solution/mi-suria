@@ -5,29 +5,28 @@ import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
 import { useTheme } from "next-themes";
+import { addHours, format } from "date-fns";
 
-export default function PlannedProductionChart() {
+export default function PlannedProductionChart({ data }: { data: any[] }) {
   const { theme } = useTheme();
-  const arrayLength = 7; // Change this value to the desired length of the array
-  const minValue = 0; // Minimum value for the random numbers
-  const maxValue = 45; // Maximum value for the random numbers
+  // const arrayLength = 7; // Change this value to the desired length of the array
+  // const minValue = 0; // Minimum value for the random numbers
+  // const maxValue = 45; // Maximum value for the random numbers
 
-  const randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
-  const randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
-  const randomNumbers3 = generateRandomArray(arrayLength, minValue, maxValue);
+  // const randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
+  // const randomNumbers2 = generateRandomArray(arrayLength, minValue, maxValue);
+  // const randomNumbers3 = generateRandomArray(arrayLength, minValue, maxValue);
+  const monthlyYieldPowerValues = data.map(
+    (d) => Math.floor((Number(d.mpy) * 100) / 100) / 10
+  );
+  const monthlyYieldPowerTime = data.map((d) =>
+    format(addHours(d.bucket, 8), "yyyy/MM/dd HH:mm:ss")
+  );
 
   const series: ApexAxisChartSeries = [
     {
       name: "Monthly Production",
-      data: randomNumbers,
-    },
-    {
-      name: "Monthly Planned Production",
-      data: randomNumbers2,
-    },
-    {
-      name: "Monthly Completion",
-      data: randomNumbers3,
+      data: monthlyYieldPowerValues,
     },
   ];
   const options: ApexOptions = {
@@ -39,31 +38,29 @@ export default function PlannedProductionChart() {
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
     },
     dataLabels: {
       enabled: false,
     },
     yaxis: {
-      min: 0,
-      max: 45,
-      decimalsInFloat: 0,
+      // min: 0,
+      // max: 45,
+      // decimalsInFloat: 0,
       title: {
         text: "kWh",
       },
-      forceNiceScale: true,
+      // forceNiceScale: true,
     },
     // colors: [colors.blue[400], colors.yellow[300], colors.green[300]],
     xaxis: {
       type: "datetime",
-      categories: [
-        new Date("2023-01-01T00:00:00Z").getTime(),
-        new Date("2023-02-01T00:00:00Z").getTime(),
-        new Date("2023-03-01T00:00:00Z").getTime(),
-        new Date("2023-04-01T00:00:00Z").getTime(),
-        new Date("2023-05-01T00:00:00Z").getTime(),
-        new Date("2023-06-01T00:00:00Z").getTime(),
-        new Date("2023-07-01T00:00:00Z").getTime(),
-      ],
+      categories: monthlyYieldPowerTime,
+      labels: {
+        datetimeUTC: false,
+      },
     },
   };
 

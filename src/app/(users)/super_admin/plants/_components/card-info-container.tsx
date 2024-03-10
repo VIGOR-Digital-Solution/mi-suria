@@ -7,15 +7,15 @@ export default function CardInfoContainer() {
     <div className="grid lg:grid-cols-2 gap-5">
       <CardInfo
         title="Active Plant"
-        activeValue="85"
-        faultValue="10"
-        inactiveValue="5"
+        activeValue="100"
+        faultValue="0"
+        inactiveValue="0"
       />
       <CardInfo
         title="Portfolio Summary"
-        activeValue="60"
-        faultValue="30"
-        inactiveValue="10"
+        activeValue=""
+        faultValue=""
+        inactiveValue=""
       />
     </div>
   );

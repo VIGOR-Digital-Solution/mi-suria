@@ -28,9 +28,9 @@ export default function TableCard() {
       <CardHeader>
         <div className="w-full">
           <p className="font-semibold">Alarm List</p>
-          <p className="text-sm font-medium text-foreground-400">
+          {/* <p className="text-sm font-medium text-foreground-400">
             Subtitle alarm list
-          </p>
+          </p> */}
         </div>
       </CardHeader>
 

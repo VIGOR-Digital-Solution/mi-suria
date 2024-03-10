@@ -3,8 +3,32 @@ import React from "react";
 import Image from "next/image";
 import HistoryChart from "./history-chart";
 import { Separator } from "@/components/ui/separator";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+
+function fetchBucketedDailyPowerYield({
+  period,
+}: {
+  period: "daily" | "monthly" | "yearly";
+}) {
+  return axios.get(`/api/tsdb/bucketed_power_yield?period=${period}`);
+}
 
 export default function PlantHistory() {
+  const { data: bucketedPowerYield, isLoading: isLoadingBucketedPowerYield } =
+    useQuery({
+      queryKey: ["bucketed_power_yield", "daily"],
+      queryFn: () => fetchBucketedDailyPowerYield({ period: "daily" }),
+      refetchInterval: 30000,
+    });
+
+  const dailyPowerYield =
+    Math.floor((bucketedPowerYield?.data?.[0].dpy * 100) / 100) / 10;
+
+  if (isLoadingBucketedPowerYield) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Card className="h-full">
       <CardHeader>
@@ -15,23 +39,29 @@ export default function PlantHistory() {
           <div>
             <div className="text-foreground-500">Daily Production</div>
             <div className="font-medium text-lg">
-              38.2{" "}
-              <span className="font-normal text-base text-foreground-500">
-                kWh
-              </span>
+              {dailyPowerYield == undefined ? (
+                "N/A"
+              ) : (
+                <div className="flex space-x-1 items-end">
+                  <div>{dailyPowerYield}</div>
+                  <span className="font-normal text-base text-foreground-500">
+                    kWh
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
-          <Separator className="sm:hidden" />
+          {/* <Separator className="sm:hidden" />
 
           <div>
             <div className="text-foreground-500">Daily Irradiation</div>
             <div className="font-medium text-lg">--</div>
           </div>
 
-          <Separator className="sm:hidden" />
+          <Separator className="sm:hidden" /> */}
 
-          <div>
+          {/* <div>
             <div className="text-foreground-500">Peak Hours Today</div>
             <div className="font-medium text-lg">
               1.91{" "}
@@ -39,13 +69,13 @@ export default function PlantHistory() {
                 h
               </span>
             </div>
-          </div>
+          </div> */}
 
           <Separator className="sm:hidden" />
         </div>
 
         <div className="h-52">
-          <HistoryChart />
+          <HistoryChart data={bucketedPowerYield?.data} />
         </div>
       </CardContent>
     </Card>

@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -7,42 +8,91 @@ import {
 import { CloudDrizzle, Sunrise, Sunset, Wind } from "lucide-react";
 import React from "react";
 import WeatherChart from "./weather-chart";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { format } from "date-fns";
+import { Image } from "@nextui-org/react";
+
+function fetchWeatherForecast() {
+  return axios.get(`/api/tsdb/weather/forecast`);
+}
 
 export default function PlantWeather() {
+  const { data: weatherForecastData, isLoading: isLoadingWeatherForecastData } =
+    useQuery({
+      queryKey: ["weather_forecast"],
+      queryFn: fetchWeatherForecast,
+      // refetchInterval: 30000,
+    });
+
+  const tempC = weatherForecastData?.data.current.temp_c;
+  const weatherCondition = weatherForecastData?.data.current.condition.text;
+  const windMph = weatherForecastData?.data.current.wind_mph;
+  const sunrise =
+    weatherForecastData?.data.forecast.forecastday[0].astro.sunrise;
+  const sunset = weatherForecastData?.data.forecast.forecastday[0].astro.sunset;
+  const currentWeatherIcon = weatherForecastData?.data.current.condition.icon;
+  const currentDay = format(new Date(), "eee");
+
+  const forecastDays = weatherForecastData?.data.forecast.forecastday;
+
+  if (isLoadingWeatherForecastData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Card className="h-full">
       <CardHeader>
         <div className="flex items-center">
           <div className="flex-auto">
-            <div className="text-xl font-bold mb-2">33&#8451;</div>
-            <div className="text-sm">24&#8451; / 33&#8451; Heavy rain</div>
-            <div className="text-sm flex space-x-2">
-              <div className="flex items-center">
-                <Wind size={"15px"} /> 2.1m/s
+            <div className="text-xl font-bold mb-1">{tempC}&#8451;</div>
+            <div className="space-y-1">
+              <div className="text-sm">{weatherCondition}</div>
+              <div className="flex items-center text-xs">
+                <Wind size={"15px"} className="mr-1" /> {windMph} mph
               </div>
-              <div className="flex items-center">
-                <Sunrise size={"15px"} /> 06:57
-              </div>
-              <div className="flex items-center">
-                <Sunset size={"15px"} /> 18:56
+              <div className="text-sm flex space-x-2">
+                <div className="flex items-center text-xs">
+                  <Sunrise size={"15px"} className="mr-1" /> {sunrise}
+                </div>
+                <div className="flex items-center text-xs">
+                  <Sunset size={"15px"} className="mr-1" /> {sunset}
+                </div>
               </div>
             </div>
           </div>
           <div className="space-y-1 flex-none text-xs">
-            <div>
-              <CloudDrizzle />
-            </div>
-            <div> WED</div>
+            <Image
+              src={currentWeatherIcon}
+              width={50}
+              height={50}
+              alt={weatherCondition}
+            />
+            <div className="uppercase text-center">{currentDay}</div>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <div className="h-20">
-          <WeatherChart />
+          <WeatherChart forecastDays={forecastDays} />
         </div>
       </CardContent>
-      <CardFooter className="gap-x-3 text-xs grid grid-cols-4 font-light">
-        <div className="space-y-2 flex flex-col items-center">
+      <CardFooter className="gap-x-3 text-xs grid grid-cols-3 font-light">
+        {forecastDays.slice(1).map((forecast: any) => (
+          <div className="space-y-2 flex flex-col items-center">
+            <div>{forecast.day.avgtemp_c}&#8451;</div>
+            <Image
+              src={currentWeatherIcon}
+              width={30}
+              height={30}
+              alt={weatherCondition}
+            />
+            <div>{format(new Date(forecast.date), "eee")}</div>
+            <div>{format(new Date(forecast.date), "dd/MM")}</div>
+          </div>
+        ))}
+
+        {/* <div className="space-y-2 flex flex-col items-center">
           <div>23&#8451;</div>
           <CloudDrizzle />
           <div>THU</div>
@@ -65,7 +115,7 @@ export default function PlantWeather() {
           <CloudDrizzle />
           <div>SUN</div>
           <div>3/12</div>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   );

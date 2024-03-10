@@ -6,17 +6,18 @@ import colors from "tailwindcss/colors";
 import { generateRandomArray } from "../utils";
 import { useTheme } from "next-themes";
 
-export default function ProductionChart() {
+export default function ProductionChart({ value }: { value: number }) {
   const { theme } = useTheme();
-  const arrayLength = 1; // Change this value to the desired length of the array
-  const minValue = 4; // Minimum value for the random numbers
-  const maxValue = 100; // Maximum value for the random numbers
+  // const arrayLength = 1; // Change this value to the desired length of the array
+  // const minValue = 4; // Minimum value for the random numbers
+  // const maxValue = 100; // Maximum value for the random numbers
 
-  let randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
+  // let randomNumbers = generateRandomArray(arrayLength, minValue, maxValue);
 
-  randomNumbers = randomNumbers.map((number) => Number(number.toFixed(2)));
+  // randomNumbers = randomNumbers.map((number) => Number(number.toFixed(2)));
+  let data = Math.floor((value * 100) / 100);
 
-  const series: ApexNonAxisChartSeries = randomNumbers;
+  const series: ApexNonAxisChartSeries = [data];
   const options: ApexOptions = {
     theme: {
       mode: theme as "light" | "dark",

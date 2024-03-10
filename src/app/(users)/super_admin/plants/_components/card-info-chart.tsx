@@ -34,11 +34,21 @@ export default function CardInfoChart({
     (_, index) => startingNumber + index
   );
 
-  const series: ApexNonAxisChartSeries = [
-    activeValue,
-    faultValue,
-    inactiveValue,
-  ];
+  function noData() {
+    if (!activeValue && !faultValue && !inactiveValue) {
+      return "N/A";
+    }
+  }
+
+  function getSeries() {
+    if (activeValue || faultValue || inactiveValue) {
+      return [activeValue, faultValue, inactiveValue];
+    }
+    return [];
+  }
+
+  const series: ApexNonAxisChartSeries = getSeries();
+
   const options: ApexOptions = {
     theme: {
       mode: theme as "light" | "dark",
@@ -98,6 +108,9 @@ export default function CardInfoChart({
     //   type: "category",
     //   categories: consecutiveNumbersArray,
     // },
+    noData: {
+      text: "N/A",
+    },
   };
 
   return (
