@@ -5,6 +5,8 @@ import { permission } from "@/db/schema/permission";
 import axios from "axios";
 import { eq, inArray, or } from "drizzle-orm";
 
+// Get devices of current authenticated account
+// (as long as the account is related to the devices directly or indirectly)
 export async function GET(
   request: Request,
   { params }: { params: { uid: string } }
