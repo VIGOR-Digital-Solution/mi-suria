@@ -1,10 +1,11 @@
 "use client";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 import { DataTable } from "./_components/table/data-table";
 import { columns } from "./_components/table/columns";
 import { useDevices } from "@/hooks/useDevices";
+import AddDeviceSetupSimulation from "./_components/add-device-setup-simulation";
 
 export default function DevicesPage() {
   const { data: devices, isLoading } = useDevices({ isPlant: true });
@@ -19,12 +20,16 @@ export default function DevicesPage() {
 
   return (
     <div className="space-y-5">
-      <Link
-        href={"/installer/devices/create"}
-        className={buttonVariants({ variant: "outline" })}
-      >
-        Create +
-      </Link>
+      <div className="flex justify-between items-center">
+        <Link
+          href={"/installer/devices/create"}
+          className={buttonVariants({ variant: "outline" })}
+        >
+          Create +
+        </Link>
+
+        {/* <AddDeviceSetupSimulation /> */}
+      </div>
 
       <DataTable columns={columns} data={tableData} />
     </div>
