@@ -78,8 +78,8 @@ export default function PlantWeather() {
         </div>
       </CardContent>
       <CardFooter className="gap-x-3 text-xs grid grid-cols-3 font-light">
-        {forecastDays.slice(1).map((forecast: any) => (
-          <div className="space-y-2 flex flex-col items-center">
+        {forecastDays.slice(1).map((forecast: any, index: any) => (
+          <div key={index} className="space-y-2 flex flex-col items-center">
             <div>{forecast.day.avgtemp_c}&#8451;</div>
             <Image
               src={currentWeatherIcon}

@@ -14,7 +14,11 @@ function fetchDailyInverterData() {
   return axios.get(`/api/tsdb/daily_inverter_data`);
 }
 
-export default function page({ params }: { params: { plant_id: string } }) {
+export default function PlantIdPage({
+  params,
+}: {
+  params: { plant_id: string };
+}) {
   const { plant_id } = params;
   const { data: dailyInverterData, isLoading: isLoadingDailyInverterData } =
     useQuery({
